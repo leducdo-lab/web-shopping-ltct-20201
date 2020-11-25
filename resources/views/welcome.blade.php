@@ -1,100 +1,74 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html>
     <head>
-        <meta charset="utf-8">
+        <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+        <base href="{{asset('')}}">
+        <link href="{{('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
+        <!-- Custom Theme files -->
+        <!--theme-style-->
+        <link href="{{('css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
+        <!--//theme-style-->
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Shopin Responsive web template, Bootstrap Web Templates, Flat Web Templates, AndroId Compatible web template,
+        Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!--theme-style-->
+        <link href="{{('css/style4.css')}}" rel="stylesheet" type="text/css" media="all" />
+        <!--//theme-style-->
+        <script src="{{('js/jquery.min.js')}}"></script>
+        <!--- start-rate---->
+        <script src="{{('js/jstarbox.js')}}"></script>
+        <link rel="stylesheet" href="{{('css/jstarbox.css')}}" type="text/css" media="screen" charset="utf-8" />
+        <script type="text/javascript">
+            jQuery(function() {
+                jQuery('.starbox').each(function() {
+                    var starbox = jQuery(this);
+                    starbox.starbox({
+                        average: starbox.attr('data-start-value'),
+                        changeable: starbox.hasClass('unchangeable') ? false : starbox.hasClass('clickonce') ? 'once' : true,
+                        ghosting: starbox.hasClass('ghosting'),
+                        autoUpdateAverage: starbox.hasClass('autoupdate'),
+                        buttons: starbox.hasClass('smooth') ? false : starbox.attr('data-button-count') || 5,
+                        stars: starbox.attr('data-star-count') || 5
+                        }).bind('starbox-value-changed', function(event, value) {
+                            if(starbox.hasClass('random')) {
+                            var val = Math.random();
+                            starbox.next().text(' '+val);
+                            return val;
+                        }
+                    })
+                });
+            });
+        </script>
+        <!---//End-rate---->
     </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
-            </div>
-        </div>
-    </body>
+<body>
+<!--header-->
+    @include('header')
+<!--banner-->
+    @yield('content')
+	<!--//footer-->
+	@include('footer')
+    <!--//footer-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="{{('js/simpleCart.min.js')}}"> </script>
+    <!-- slide -->
+    <script src="{{('js/bootstrap.min.js')}}"></script>
+    <!--light-box-files -->
+    <script src="{{('js/jquery.chocolat.js')}}"></script>
+    <link rel="stylesheet" href="{{('css/chocolat.css')}}" type="text/css" media="screen" charset="utf-8">
+    <!--light-box-files -->
+    <script type="text/javascript" charset="utf-8">
+        $(function() {
+            $('a.picture').Chocolat();
+        });
+    </script>
+</body>
 </html>
