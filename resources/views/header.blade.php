@@ -2,7 +2,7 @@
     <div class="container">
             <div class="head">
                 <div class=" logo">
-                    <a href="index.html"><img src="images/logo.png" alt=""></a>
+                    <a href="{{(URL::to('/home'))}}"><img src="images/logo.png" alt=""></a>
                 </div>
             </div>
         </div>
@@ -10,9 +10,12 @@
             <div class="container">
             <div class="col-sm-5 col-md-offset-2  header-login">
                         <ul >
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="register.html">Register</a></li>
-                            <li><a href="checkout.html">Checkout</a></li>
+                            @if (Session::has('auth'))
+                                <li><a href="{{(URL::to('/logout'))}}">Logout</a></li>
+                            @else
+                                <li><a href="{{(URL::to('/login'))}}">Login</a></li>
+                                <li><a href="{{(URL::to('/register'))}}">Register</a></li>
+                            @endif
                         </ul>
                     </div>
 
@@ -50,7 +53,7 @@
        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
             <ul class="nav navbar-nav nav_1">
-                <li><a class="color" href="index.html">Home</a></li>
+                <li><a class="color" href="{{(URL::to('/home'))}}">Home</a></li>
 
                 <li class="dropdown mega-dropdown active">
                     <a class="color1" href="#" class="dropdown-toggle" data-toggle="dropdown">Women<span class="caret"></span></a>
@@ -149,7 +152,7 @@
                                 <div class="h_nav">
                                     <h4>Submenu3</h4>
 
-    <ul>
+                                        <ul>
                                             <li><a href="product.html">Shirts</a></li>
                                             <li><a href="product.html">Shoes, Boots & Trainers</a></li>
                                             <li><a href="product.html">Sunglasses</a></li>
@@ -175,16 +178,83 @@
                                 </div>
                             </div>
                             <div class="col1 col5">
-                            <img src="images/me1.png" class="img-responsive" alt="">
+                                <img src="images/me1.png" class="img-responsive" alt="">
                             </div>
                             <div class="clearfix"></div>
                         </div>
                     </div>
                 </li>
-                <!-- <li><a class="color3" href="product.html">Sale</a></li> -->
                 <li><a class="color4" href="404.html">About</a></li>
-                <!-- <li><a class="color5" href="typo.html">Short Codes</a></li> -->
                 <li ><a class="color6" href="contact.html">Contact</a></li>
+                <!-- Thông tin người dùng. -->
+                @if(Session::has('name'))
+                    <li class="dropdown mega-dropdown active">
+                        <a class="color2" href="#" class="dropdown-toggle" data-toggle="dropdown">{{(Session::get('name'))}}<span class="caret"></span></a>
+                        <div class="dropdown-menu mega-dropdown-menu">
+                            <div class="menu-top">
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Submenu1</h4>
+                                            <ul>
+                                                <li><a href="product.html">Accessories</a></li>
+                                                <li><a href="product.html">Bags</a></li>
+                                                <li><a href="product.html">Caps & Hats</a></li>
+                                                <li><a href="product.html">Hoodies & Sweatshirts</a></li>
+
+                                            </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Submenu2</h4>
+                                        <ul>
+                                                <li><a href="product.html">Jackets & Coats</a></li>
+                                                <li><a href="product.html">Jeans</a></li>
+                                                <li><a href="product.html">Jewellery</a></li>
+                                                <li><a href="product.html">Jumpers & Cardigans</a></li>
+                                                <li><a href="product.html">Leather Jackets</a></li>
+                                                <li><a href="product.html">Long Sleeve T-Shirts</a></li>
+                                            </ul>
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Submenu3</h4>
+
+                                            <ul>
+                                                <li><a href="product.html">Shirts</a></li>
+                                                <li><a href="product.html">Shoes, Boots & Trainers</a></li>
+                                                <li><a href="product.html">Sunglasses</a></li>
+                                                <li><a href="product.html">Sweatpants</a></li>
+                                                <li><a href="product.html">Swimwear</a></li>
+                                                <li><a href="product.html">Trousers & Chinos</a></li>
+
+                                            </ul>
+
+                                    </div>
+                                </div>
+                                <div class="col1">
+                                    <div class="h_nav">
+                                        <h4>Submenu4</h4>
+                                        <ul>
+                                            <li><a href="product.html">T-Shirts</a></li>
+                                            <li><a href="product.html">Underwear & Socks</a></li>
+                                            <li><a href="product.html">Vests</a></li>
+                                            <li><a href="product.html">Jackets & Coats</a></li>
+                                            <li><a href="product.html">Jeans</a></li>
+                                            <li><a href="product.html">Jewellery</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="col1 col5">
+                                    <img src="images/me1.png" class="img-responsive" alt="">
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </li>
+                @endif
+                <!-- Thông tin người dùng. -->
             </ul>
          </div><!-- /.navbar-collapse -->
 
@@ -224,20 +294,19 @@
                         <p>Shopin</p>
                     </div>
                 </div>
-             <script>
+            <script>
                 $(document).ready(function() {
-                $('.popup-with-zoom-anim').magnificPopup({
-                type: 'inline',
-                fixedContentPos: false,
-                fixedBgPos: true,
-                overflowY: 'auto',
-                closeBtnInside: true,
-                preloader: false,
-                midClick: true,
-                removalDelay: 300,
-                mainClass: 'my-mfp-zoom-in'
-                });
-
+                    $('.popup-with-zoom-anim').magnificPopup({
+                        type: 'inline',
+                        fixedContentPos: false,
+                        fixedBgPos: true,
+                        overflowY: 'auto',
+                        closeBtnInside: true,
+                        preloader: false,
+                        midClick: true,
+                        removalDelay: 300,
+                        mainClass: 'my-mfp-zoom-in'
+                    });
                 });
             </script>
                             <!----->
