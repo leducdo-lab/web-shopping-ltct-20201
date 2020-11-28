@@ -7,7 +7,7 @@
                     <div class="r3_counter_box">
                         <i class="fa fa-mail-forward"></i>
                         <div class="stats">
-                            <h5>45 <span>%</span></h5>
+                            <h5>{{(Session::get('orders')?Session::get('orders'):0)}}</h5>
                             <div class="grow">
                                 <p>Order</p>
                             </div>
@@ -18,7 +18,7 @@
                     <div class="r3_counter_box">
                         <i class="fa fa-users"></i>
                         <div class="stats">
-                            <h5>50 <span>%</span></h5>
+                            <h5>{{(Session::get('users')?Session::get('users'):0)}}</h5>
                             <div class="grow grow1">
                                 <p>Users</p>
                             </div>
@@ -29,9 +29,9 @@
                     <div class="r3_counter_box">
                         <i class="fa fa-eye"></i>
                         <div class="stats">
-                            <h5>70 <span>%</span></h5>
+                            <h5>{{(Session::get('products')?Session::get('product'):0)}}</h5>
                             <div class="grow grow3">
-                                <p>Visitors</p>
+                                <p>Products</p>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                     <div class="r3_counter_box">
                         <i class="fa fa-usd"></i>
                         <div class="stats">
-                            <h5>70 <span>%</span></h5>
+                            <h5>{{(Session::get('')?Session::get(''):0)}}</h5>
                             <div class="grow grow2">
                                 <p>Profit</p>
                             </div>
