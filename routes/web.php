@@ -70,3 +70,8 @@ Route::get('/admin/sign_up', [
     'as'=>'sign_up',
     'uses'=>'AdminController@getSignUp'
 ]);
+
+Route::get('/admin/list_admin', [
+    'as'=>'list_admin',
+    'uses'=>'AdminController@getListAdmin'
+]);

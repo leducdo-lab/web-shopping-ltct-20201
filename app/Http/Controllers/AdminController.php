@@ -7,7 +7,7 @@ use App\Admin;
 
 class AdminController extends Controller
 {
-  
+
     public function getIndex() {
         return view('admin.dashboard');
     }
@@ -20,8 +20,14 @@ class AdminController extends Controller
     public function getAddProduct() {
         return view('admin.add_product');
     }
-    public function getSignUp() {
+    public function getSignUp()
+    {
         return view('admin.sign_up');
+    }
+    public function getListAdmin()
+    {
+        return view('admin.list_admin');
+    }
     //
     public function postRegister(Request $req) {
         $this->validate( $req,
