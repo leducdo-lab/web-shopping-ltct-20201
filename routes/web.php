@@ -46,3 +46,27 @@ Route::get('/logout', [
     'uses' => 'PageController@getLogout'
 ]);
 
+Route::get('/admin/dashboard', [
+    'as'=>'dashboard',
+    'uses'=>'AdminController@getIndex'
+]);
+
+Route::get('/admin/list_product', [
+    'as'=>'list_product',
+    'uses'=>'AdminController@getProduct'
+]);
+
+Route::get('/admin/list_user', [
+    'as'=>'list_user',
+    'uses'=>'AdminController@getUser'
+]);
+
+Route::get('/admin/add_product', [
+    'as'=>'add_product',
+    'uses'=>'AdminController@getAddProduct'
+]);
+
+Route::get('/admin/sign_up', [
+    'as'=>'sign_up',
+    'uses'=>'AdminController@getSignUp'
+]);
