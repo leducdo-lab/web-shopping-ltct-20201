@@ -17,6 +17,7 @@ class PageController extends Controller
     }
 
     public function postLogin(Request $req) {
+        
         $this->validate( $req,
         [
             'email'=>'required|email',
@@ -30,11 +31,14 @@ class PageController extends Controller
         ]);
 
         $credentials = array('email'=>$req->email, 'password'=>$req->password);
+        $person_id = new PersonController();
 
         if(Auth::attempt($credentials))
         {
-            $user = DB::table('users')->where('email', $req->email)->first();
-            return redirect()->route('home_1')->with(['name'=>$user->fullname]);
+            $user = DB::table('users')
+                ->where('person_id', $person_id->getPersonId($req->email))
+                ->first();
+            return redirect()->route('home_1')->with(['name'=>$user->full_name]);
         }
         else
         {

@@ -20,7 +20,9 @@ class CreateTableOrderDetail extends Migration
             $table->integer('amount');
             $table->float('unit_price', 10, 2);
             $table->integer('order_id')->unsigned();
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('order_id')->references('id')
+                ->on('orders')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -21,7 +21,9 @@ class CreateTableProduct extends Migration
             $table->text('description', 255);
             $table->integer('amount');
             $table->integer('product_type_id')->unsigned();
-            $table->foreign('product_type_id')->references('id')->on('product_type');
+            $table->foreign('product_type_id')->references('id')
+                ->on('product_type')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

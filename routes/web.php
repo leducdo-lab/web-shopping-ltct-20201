@@ -33,12 +33,12 @@ Route::post('/login', [
 
 Route::get('/register', [
     'as'=> 'register',
-    'uses' => 'PageController@getRegister'
+    'uses' => 'UserController@getRegister_User'
 ]);
 
 Route::post('/register', [
     'as'=> 'register',
-    'uses' => 'PageController@postRegister'
+    'uses' => 'UserController@postRegister_User'
 ]);
 
 Route::get('/logout', [

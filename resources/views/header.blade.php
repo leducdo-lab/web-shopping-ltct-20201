@@ -10,7 +10,7 @@
             <div class="container">
             <div class="col-sm-5 col-md-offset-2  header-login">
                         <ul >
-                            @if (Session::has('auth'))
+                            @if (Session::has('name'))
                                 <li><a href="{{(URL::to('/logout'))}}">Logout</a></li>
                             @else
                                 <li><a href="{{(URL::to('/login'))}}">Login</a></li>

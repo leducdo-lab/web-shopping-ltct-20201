@@ -19,7 +19,9 @@ class CreateTableCarts extends Migration
             $table->integer('product_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('product');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
