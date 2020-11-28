@@ -17,7 +17,9 @@ class CreateTableAdminsTable extends Migration
             $table->increments('id');
             $table->boolean('is_main_admin');
             $table->integer('person_id')->unsigned();
-            $table->foreign('person_id')->references('id')->on('persons');
+            $table->foreign('person_id')->references('id')
+                ->on('persons')
+                ->onDelete('cascade');
         });
     }
 

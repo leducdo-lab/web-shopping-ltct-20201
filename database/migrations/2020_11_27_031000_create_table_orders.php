@@ -20,7 +20,9 @@ class CreateTableOrders extends Migration
             $table->text('note', 200);
             $table->integer('user_id')->unsigned();
             $table->integer('address_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')
+                ->on('users')
+                ->onDelete('cascade');
             $table->foreign('address_id')->references('id')->on('address');
             $table->timestamps();
         });
