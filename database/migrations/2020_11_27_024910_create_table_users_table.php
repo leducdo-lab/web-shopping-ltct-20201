@@ -18,7 +18,9 @@ class CreateTableUsersTable extends Migration
             $table->string('full_name', 50);
             $table->string('phone', 20);
             $table->integer('person_id')->unsigned();
-            $table->foreign('person_id')->references('id')->on('persons');
+            $table->foreign('person_id')->references('id')
+                ->on('persons')
+                ->onDelete('cascade');
         });
     }
 
