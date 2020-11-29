@@ -17,80 +17,21 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="active">
-                                <th scope="row">1</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
-                            <tr class="success">
-                                <th scope="row">3</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
-                            <tr class="info">
-                                <th scope="row">5</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
-                            <tr class="warning">
-                                <th scope="row">7</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">8</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
-                            <tr class="danger">
-                                <th scope="row">9</th>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td>Column content</td>
-                                <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
-                            </tr>
+                            @if(Session::has('products'))
+                                @foreach ($products as $product)
+                                <tr class="active">
+                                    <th scope="row">{{($product->id)}}</th>
+                                    <td>{{($product->name)}}</td>
+                                    <td>{{($product->amount)}}</td>
+                                    <td>{{($product->unit_value)}}</td>
+                                    <td>{{($product->unit_price)}}</td>
+                                    <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
+                                </tr>
+                                @endforeach
+                            @endif
                             </tbody>
                         </table>
+                        {{ $products->links() }}
                     </div>
                     <!-- /.table-responsive -->
                 </div>

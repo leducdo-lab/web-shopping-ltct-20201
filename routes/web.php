@@ -66,6 +66,16 @@ Route::get('/admin/add_product', [
     'uses'=>'AdminController@getAddProduct'
 ]);
 
+Route::post('/admin/add_product', [
+    'as'=>'add_product',
+    'uses'=>'AdminController@postAddProduct'
+]);
+
+Route::get('/admin/edit', [
+    'as'=>'edit_product',
+    'uses'=>'AdminController@getEditProduct'
+]);
+
 Route::get('/admin/sign_up', [
     'as'=>'sign_up',
     'uses'=>'AdminController@getSignUp'
