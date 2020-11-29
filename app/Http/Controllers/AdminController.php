@@ -50,8 +50,14 @@ class AdminController extends Controller
                 'phu_kien' => $phu_kiens,
             ]);
     }
-    public function getSignUp() {
+    public function getSignUp()
+    {
         return view('admin.sign_up');
+    }
+  
+    public function getListAdmin()
+    {
+        return view('admin.list_admin');
     }
 
     public function getEditProduct(Request $req) {

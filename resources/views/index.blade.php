@@ -59,6 +59,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <li class="menu-list"><a href="#"><i class="lnr lnr-menu"></i>  <span>Danh sách</span></a>
                     <ul class="sub-menu-list">
                         <li><a href="{{(route('list_user'))}}">Danh sách người dùng</a> </li>
+                        <li><a href="{{(route('list_admin'))}}">Danh sách admin</a> </li>
                         <li><a href="{{(route('list_product'))}}">Danh sách sản phẩm</a></li>
                     </ul>
                 </li>

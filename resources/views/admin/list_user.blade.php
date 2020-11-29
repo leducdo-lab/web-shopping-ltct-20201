@@ -13,10 +13,10 @@
                             <th>Họ tên</th>
                             <th>Email</th>
                             <th>Số điện thoại</th>
-                            <th>Admin</th>
                         </tr>
                         </thead>
                         <tbody>
+
                             @if (Session::has('users'))
                                 @foreach ($users as $user)
                                 <tr class="active">
@@ -28,24 +28,13 @@
                                 </tr>
                                 @endforeach
                             @endif
-
+                            
                         </tbody>
                     </table>
                     {{ $users->links() }}
                 </div>
                 <!-- /.table-responsive -->
             </div>
-{{--                <input type="submit" style="background:#31b0d5;--}}
-{{--                                            color:white;--}}
-{{--                                            font-size: 16px;--}}
-{{--                                            width: 100px;--}}
-{{--                                            height: 50px;--}}
-{{--                                            position: absolute;--}}
-{{--                                            left: 50%;--}}
-{{--                                            margin-left: -50px;--}}
-{{--                                            margin-top: 30px;"--}}
-{{--                       value="Lưu">--}}
-                <button type="submit" class="btn btn-primary" style="font-size:20px;width: 100px;margin-top: 30px; left: 50%; position: absolute;">Lưu</button>
             </form>
         </div>
     </div>
