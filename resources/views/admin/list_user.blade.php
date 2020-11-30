@@ -9,7 +9,7 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>STT</th>
+                            {{-- <th>STT</th> --}}
                             <th>Họ tên</th>
                             <th>Email</th>
                             <th>Số điện thoại</th>
@@ -17,18 +17,18 @@
                         </thead>
                         <tbody>
 
-                            @if (Session::has('users'))
-                                @foreach ($users as $user)
-                                <tr class="active">
-                                    <th scope="row">{{($user->index())}}</th>
-                                    <td>{{($user->full_name)}}</td>
-                                    <td>{{($user->email)}}</td>
-                                    <td>{{($user->phone)}}</td>
-                                    <td><input type="checkbox" name="Admin" value="Admin"></td>
-                                </tr>
-                                @endforeach
+                            @if(!empty($users))
+                            @foreach ($users as $user)
+                            <tr class="active">
+                                {{-- <th scope="row"></th> --}}
+                                <td>{{($user->full_name)}}</td>
+                                <td>{{($user->email)}}</td>
+                                <td>{{($user->phone)}}</td>
+                                {{-- <td><input type="checkbox" name="Admin" value="Admin"></td> --}}
+                            </tr>
+                            @endforeach
                             @endif
-                            
+
                         </tbody>
                     </table>
                     {{ $users->links() }}

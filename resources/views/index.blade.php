@@ -63,7 +63,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{{(route('list_product'))}}">Danh sách sản phẩm</a></li>
                     </ul>
                 </li>
-                <li><a href="{{(route('sign_up'))}}"><i class="lnr lnr-book"></i> <span>Đăng ký</span></a></li>
+                @if (Cookie::get('main_admin') == true)
+                    <li><a href="{{(route('sign_up'))}}"><i class="lnr lnr-book"></i> <span>Đăng ký</span></a></li>
+                @endif
             </ul>
             <!--sidebar nav end-->
         </div>

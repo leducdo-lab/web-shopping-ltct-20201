@@ -2,13 +2,17 @@
 @section('content')
         <div id="page-wrapper">
             <div class="graphs">
+                @if (Session::has('success'))
+                    <div class="alert alert-{{ Session::get('success') }}">
+                        {{( Session::get('message') )}}
+                    </div>
+                @endif
                 <h3 class="blank1">Danh sách sản phẩm</h3>
                 <div class="xs tabls">
                     <div class="bs-example4" data-example-id="contextual-table">
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>#</th>
                                 <th>Tên sản phẩm</th>
                                 <th>Số lượng</th>
                                 <th>Giá gốc</th>
@@ -17,15 +21,16 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @if(Session::has('products'))
+                            @if(!empty($products))
                                 @foreach ($products as $product)
                                 <tr class="active">
-                                    <th scope="row">{{($product->id)}}</th>
                                     <td>{{($product->name)}}</td>
                                     <td>{{($product->amount)}}</td>
                                     <td>{{($product->unit_value)}}</td>
                                     <td>{{($product->unit_price)}}</td>
-                                    <td><a href="{{(route('add_product'))}}">Sửa</a> | <a href="{{(route('list_product'))}}">Xóa</a> </td>
+                                    <td><a href="{{(route('edit_product','product_id='.$product->id))}}">Sửa</a> |
+                                        <a href="{{(route('remove_product','product_id='.$product->id))}}">Xóa</a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             @endif

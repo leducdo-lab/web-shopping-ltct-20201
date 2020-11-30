@@ -9,39 +9,67 @@
                             {{( Session::get('message') )}}
                         </div>
                     @endif
-                    <h3 class="blank1">Thêm sản phẩm</h3>
-                    <form action="{{(route('add_product'))}}" method="post" class="form-horizontal">
+                    @if (!empty($product[0]->id))
+                        <h3 class="blank1">Sửa sản phẩm</h3>
+                    @endif
+                    <form action="{{(route('edit_product'))}}" method="post" class="form-horizontal">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <input type="hidden" name="product_id" value="{{($product[0]->id)}}">
                         <div class="form-group">
                         </div>
                         <div class="form-group">
                             <label for="name_product" class="col-sm-2 control-label">Tên sản phẩm</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="name_product" id="name_product" placeholder="Tên sản phẩm">
+                                <input
+                                    type="text"
+                                    class="form-control1"
+                                    name="name_product"
+                                    id="name_product"
+                                    placeholder="Tên sản phẩm"
+                                    value="{{($product[0]->name ? $product[0]->name : "")}}"
+                                >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="number" class="col-sm-2 control-label">Số lượng sản phẩm</label>
                             <div class="col-sm-8">
-                                <input  type="text" class="form-control1" name="number" id="number" placeholder="Số lượng sản phẩm">
+                                <input
+                                    type="text"
+                                    class="form-control1"
+                                    name="number"
+                                    id="number"
+                                    placeholder="Số lượng sản phẩm"
+                                    value="{{($product[0]->amount ? $product[0]->amount : "")}}"
+                                >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="value" class="col-sm-2 control-label">Giá gốc</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="value" id="value" placeholder="Giá gốc">
+                                <input type="text" class="form-control1"
+                                    name="value" id="value"
+                                    placeholder="Giá gốc" value="{{( $product[0]->unit_value ? $product[0]->unit_value : "")}}"
+                                >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="price" class="col-sm-2 control-label">Giá bán</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="price" id="price" placeholder="Giá bán">
+                                <input type="text" class="form-control1"
+                                    name="price" id="price"
+                                    value="{{($product[0]->unit_price ? $product[0]->unit_price : "")}}"
+                                    placeholder="Giá bán"
+                                >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="description" class="col-sm-2 control-label">Mô tả</label>
                             <div class="col-sm-8">
-                                <textarea placeholder="Mô tả" id="description" name="description" cols="50" rows="4" class="form-control1"></textarea>
+                                <textarea placeholder="Mô tả" id="description"
+                                name="description" cols="50" rows="4"
+                                class="form-control1"
+                                >{{($product[0]->description ? $product[0]->description : "")}}
+                            </textarea>
                             </div>
                         </div>
                         <div class="form-group">
@@ -65,7 +93,6 @@
                                             <option value="{{( $pk->id )}}">{{($pk->name.'('.$pk->price.')')}}</option>
                                         @endforeach
                                     @endif
-
                                 </select>
                             </div>
                         </div>

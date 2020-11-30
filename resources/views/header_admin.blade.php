@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                 </a></li>
-                            
+
                             <li>
                                 <div class="notification_bottom">
                                     <a href="#">See all notification</a>
@@ -65,7 +65,7 @@
                             <div class="profile_img">
                                 <span style="background:url({{url('images/1.jpg')}}) no-repeat center"> </span>
                                 <div class="user-name">
-                                    <p>Michael<span>Administrator</span></p>
+                                    <p>Admin<span>{{(Cookie::get('email'))}}</span></p>
                                 </div>
                                 <i class="lnr lnr-chevron-down"></i>
                                 <i class="lnr lnr-chevron-up"></i>

@@ -41,10 +41,14 @@ class UserController extends Controller
         $this->createUser($req->phone, $req->full_name, $person_id);
 
         $info_user = $this->getInfo($person_id);
-        // dd($info_user[0]->id);
+
         $this->createAddress($req->address, $info_user[0]->id);
 
-        return redirect()->route('home_1')->with(['name'=>$info_user[0]->full_name]);
+        $name_cookie = cookie('name', $req->full_name->full_name, time() + 10000000);
+
+        return redirect()->route('home_1')
+            ->with(['name'=>$info_user[0]->full_name])
+            ->withCookie($name_cookie);
     }
 
     public function createUser($phone, $full_name, $person_id) {

@@ -30,12 +30,12 @@ Route::post('/login', [
     'as'=> 'login',
     'uses' => 'PageController@postLogin'
 ]);
-
+// Đăng ký người dùng
 Route::get('/register', [
     'as'=> 'register',
     'uses' => 'UserController@getRegister_User'
 ]);
-
+// end đăng ký người dùng
 Route::post('/register', [
     'as'=> 'register',
     'uses' => 'UserController@postRegister_User'
@@ -46,6 +46,8 @@ Route::get('/logout', [
     'uses' => 'PageController@getLogout'
 ]);
 
+// Xử lý bên admin.
+
 Route::get('/admin/dashboard', [
     'as'=>'dashboard',
     'uses'=>'AdminController@getIndex'
@@ -53,7 +55,12 @@ Route::get('/admin/dashboard', [
 
 Route::get('/admin/list_product', [
     'as'=>'list_product',
-    'uses'=>'AdminController@getProduct'
+    'uses'=>'AdminController@getListProduct'
+]);
+
+Route::get('/admin/remove_product', [
+    'as'=>'remove_product',
+    'uses'=>'ProductController@getRemoveProduct'
 ]);
 
 Route::get('/admin/list_user', [
@@ -63,17 +70,22 @@ Route::get('/admin/list_user', [
 
 Route::get('/admin/add_product', [
     'as'=>'add_product',
-    'uses'=>'AdminController@getAddProduct'
+    'uses'=>'ProductController@getAddProduct'
 ]);
 
 Route::post('/admin/add_product', [
     'as'=>'add_product',
-    'uses'=>'AdminController@postAddProduct'
+    'uses'=>'ProductController@postAddProduct'
 ]);
 
-Route::get('/admin/edit', [
+Route::get('/admin/edit_product', [
     'as'=>'edit_product',
-    'uses'=>'AdminController@getEditProduct'
+    'uses'=>'ProductController@getEditProduct'
+]);
+
+Route::post('/admin/edit_product', [
+    'as'=>'edit_product',
+    'uses'=>'ProductController@postEditProduct'
 ]);
 
 Route::get('/admin/sign_up', [
@@ -81,7 +93,24 @@ Route::get('/admin/sign_up', [
     'uses'=>'AdminController@getSignUp'
 ]);
 
+Route::post('/admin/sign_up', [
+    'as'=>'sign_up',
+    'uses'=>'AdminController@postSignup'
+]);
+
 Route::get('/admin/list_admin', [
     'as'=>'list_admin',
     'uses'=>'AdminController@getListAdmin'
 ]);
+
+Route::get('/admin/edit', [
+        'as'=>'edit_admin',
+        'uses'=>'AdminController@getEditAdmin'
+]);
+
+Route::get('/admin/remove', [
+    'as'=>'remove_admin',
+    'uses'=>'AdminController@getRemoveAdmin'
+]);
+
+// end bên admin

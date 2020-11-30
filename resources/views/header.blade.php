@@ -10,9 +10,7 @@
             <div class="container">
             <div class="col-sm-5 col-md-offset-2  header-login">
                         <ul >
-                            @if (Session::has('name'))
-                                <li><a href="{{(URL::to('/logout'))}}">Logout</a></li>
-                            @else
+                            @if (empty($name) == true)
                                 <li><a href="{{(URL::to('/login'))}}">Login</a></li>
                                 <li><a href="{{(URL::to('/register'))}}">Register</a></li>
                             @endif
@@ -187,76 +185,23 @@
                 <li><a class="color4" href="404.html">About</a></li>
                 <li ><a class="color6" href="contact.html">Contact</a></li>
                 <!-- Thông tin người dùng. -->
-                @if(Session::has('name'))
+                @if(!empty($name))
                     <li class="dropdown mega-dropdown active">
-                        <a class="color2" href="#" class="dropdown-toggle" data-toggle="dropdown">{{(Session::get('name'))}}<span class="caret"></span></a>
+                        <a class="color2" href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $name }}<span class="caret"></span></a>
                         <div class="dropdown-menu mega-dropdown-menu">
-                            <div class="menu-top">
-                                <div class="col1">
-                                    <div class="h_nav">
-                                        <h4>Submenu1</h4>
-                                            <ul>
-                                                <li><a href="product.html">Accessories</a></li>
-                                                <li><a href="product.html">Bags</a></li>
-                                                <li><a href="product.html">Caps & Hats</a></li>
-                                                <li><a href="product.html">Hoodies & Sweatshirts</a></li>
-
-                                            </ul>
-                                    </div>
-                                </div>
-                                <div class="col1">
-                                    <div class="h_nav">
-                                        <h4>Submenu2</h4>
-                                        <ul>
-                                                <li><a href="product.html">Jackets & Coats</a></li>
-                                                <li><a href="product.html">Jeans</a></li>
-                                                <li><a href="product.html">Jewellery</a></li>
-                                                <li><a href="product.html">Jumpers & Cardigans</a></li>
-                                                <li><a href="product.html">Leather Jackets</a></li>
-                                                <li><a href="product.html">Long Sleeve T-Shirts</a></li>
-                                            </ul>
-                                    </div>
-                                </div>
-                                <div class="col1">
-                                    <div class="h_nav">
-                                        <h4>Submenu3</h4>
-
-                                            <ul>
-                                                <li><a href="product.html">Shirts</a></li>
-                                                <li><a href="product.html">Shoes, Boots & Trainers</a></li>
-                                                <li><a href="product.html">Sunglasses</a></li>
-                                                <li><a href="product.html">Sweatpants</a></li>
-                                                <li><a href="product.html">Swimwear</a></li>
-                                                <li><a href="product.html">Trousers & Chinos</a></li>
-
-                                            </ul>
-
-                                    </div>
-                                </div>
-                                <div class="col1">
-                                    <div class="h_nav">
-                                        <h4>Submenu4</h4>
-                                        <ul>
-                                            <li><a href="product.html">T-Shirts</a></li>
-                                            <li><a href="product.html">Underwear & Socks</a></li>
-                                            <li><a href="product.html">Vests</a></li>
-                                            <li><a href="product.html">Jackets & Coats</a></li>
-                                            <li><a href="product.html">Jeans</a></li>
-                                            <li><a href="product.html">Jewellery</a></li>
+                                <div class="h_nav">
+                                        <ul style="list-style-type: none;">
+                                            <li><a href="">Thông tin</a></li>
+                                            <li><a href="{{(URL::to('/logout'))}}">Đăng xuất</a></li>
                                         </ul>
-                                    </div>
-                                </div>
-                                <div class="col1 col5">
-                                    <img src="images/me1.png" class="img-responsive" alt="">
                                 </div>
                                 <div class="clearfix"></div>
-                            </div>
                         </div>
                     </li>
                 @endif
                 <!-- Thông tin người dùng. -->
             </ul>
-         </div><!-- /.navbar-collapse -->
+        </div><!-- /.navbar-collapse -->
 
     </nav>
                 </div>
