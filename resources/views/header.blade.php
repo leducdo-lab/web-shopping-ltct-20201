@@ -192,6 +192,7 @@
                                 <div class="h_nav">
                                         <ul style="list-style-type: none;">
                                             <li><a href="{{(URL::to('/info'.'/'.Cookie::get('user_id')))}}">Thông tin</a></li>
+                                            <li><a href="{{(URL::to('/change_password'))}}">Đổi mật khẩu</a></li>
                                             <li><a href="{{(URL::to('/logout'))}}">Đăng xuất</a></li>
                                         </ul>
                                 </div>

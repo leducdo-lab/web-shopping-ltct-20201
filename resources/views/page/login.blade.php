@@ -17,7 +17,12 @@
                 @if(Session::has('flag'))
                     <div class="alert alert-{{ Session::get('flag') }}">{{ Session::get('message') }}</div>
                 @endif
-                <div class="login-mail">
+                @if (count($errors) > 0)
+                    @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                            <div class="login-mail">
                     <input type="text" name="email" placeholder="Email" required="">
                     <i  class="glyphicon glyphicon-envelope"></i>
                 </div>
