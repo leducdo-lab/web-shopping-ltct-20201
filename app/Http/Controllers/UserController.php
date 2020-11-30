@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Address;
+use App\Person;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -33,6 +35,43 @@ class UserController extends Controller
 
     public function getRegister_User() {
         return view('page.register');
+    }
+
+    public function ChangePassWord() {
+        return view('page.change_password');
+    }
+
+    public function postChangePassWord(Request $req) {
+
+        $user_id = $req->cookie('user_id');
+
+        $this->validate($req,
+        [
+           'password_fu' => 'required|min:8',
+           'password_new' => 'required|min:8',
+           're_password_new' => 'required|min:8|same:password_new'
+        ],
+        [
+            'password_fu.required' => 'Vui lòng nhập mật khẩu cũ',
+            'password_fu.min' => 'Mật khẩu ít nhất 8 ký tự',
+            'password_new.min' => 'Mật khẩu ít nhất 8 ký tự',
+            'password_new.required' =>'Vui lòng nhập mật khẩu mới',
+            're_password_new.required' => 'Vui lòng nhập lại mật khẩu mới',
+            're_password_new.min' => 'Mật khẩu ít nhất 8 ký tự',
+            're_password_new.same' => 'Vui lòng nhập lại xác định mật khẩu'
+        ]);
+
+
+        $person_id = DB::table('users')->select('person_id')
+            ->where('id',$user_id)->get();
+
+        $person = Person::find($person_id[0]->person_id);
+        $person->password = Hash::make($req->password_new);
+
+        $person->save();
+
+        return redirect()->route('home');
+
     }
 
     public function postRegister_User(Request $req) {

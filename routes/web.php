@@ -36,6 +36,16 @@ Route::get('/info/{id}', [
     'uses' => 'UserController@getInfo_User'
 ]);
 
+Route::get('/change_password', [
+    'as'=> 'change_password',
+    'uses' => 'UserController@ChangePassWord'
+]);
+
+Route::post('/change_password',[
+    'as'=> 'change_password',
+    'uses' => 'UserController@postChangePassWord'
+]);
+
 // Đăng ký người dùng
 Route::get('/register', [
     'as'=> 'register',
