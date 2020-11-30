@@ -4,54 +4,72 @@
         <div class="graphs">
             <h3 class="blank1">Danh sách người dùng</h3>
             <form>
+                @if (Session::has('success'))
+                    <div class="alert alert-{{ Session::get('success')}}">
+                        {{(Session::get('message'))}}
+                    </div>
+                @endif
                 <div class="xs tabls">
                     <div class="bs-example4" data-example-id="contextual-table">
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>#</th>
+                                {{-- <th>#</th> --}}
                                 <th>Email</th>
+                                @if (Cookie::get('main_admin') == true)
+                                    <th>Sửa</th>
+                                    <th>Xoá</th>
+                                @endif
                             </tr>
                             </thead>
                             <tbody>
-                            <tr class="active">
-                                <th scope="row">1</th>
-                                <td>Column content</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Column content</td>
-                            </tr>
-                            <tr class="success">
-                                <th scope="row">3</th>
-                                <td>Column content</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Column content</td>
-                            </tr>
-                            <tr class="info">
-                                <th scope="row">5</th>
-                                <td>Column content</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Column content</td>
-                            </tr>
-                            <tr class="warning">
-                                <th scope="row">7</th>
-                                <td>Column content</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">8</th>
-                                <td>Column content</td>
-                            </tr>
-                            <tr class="danger">
-                                <th scope="row">9</th>
-                                <td>Column content</td>
-                            </tr>
+
+                                @if(!empty($admins))
+                                    @foreach($admins as $admin)
+                                        <tr class="active">
+                                            {{-- <th scope="row">1</th> --}}
+                                            <td>{{($admin->email)}}</td>
+                                            @if($admin->is_main_admin)
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">
+                                                        {{($admin->is_main_admin? $data['main']: $data['non_main'])}}
+                                                    <span class="caret"></span></button>
+                                                    <ul class="dropdown-menu">
+                                                        @if ($admin->is_main_admin)
+                                                            <li class="active"><a href="{{(
+                                                                route('edit_admin','admin='.$admin->id.'&quyen='.$admin->is_main_admin)
+                                                                )}}">{{($data['main'])}}</a></li>
+                                                            <li class=""><a href="{{(
+                                                                route('edit_admin','admin='.$admin->id.'&quyen='.(!$admin->is_main_admin))
+                                                                )}}">{{($data['non_main'])}}</a></li>
+                                                        @else
+                                                        <li class="active"><a href="{{(
+                                                            route('edit_admin','admin='.$admin->id.'&quyen='.($admin->is_main_admin))
+                                                            )}}">{{($data['non_main'])}}</a></li>
+                                                        <li class=""><a href="{{(
+                                                            route('edit_admin','admin='.$admin->id.'&quyen='.(!$admin->is_main_admin))
+                                                            )}}">{{($data['main'])}}</a></li>
+                                                        @endif
+                                                    </ul>
+                                                </div>
+
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger">
+                                                    <a href="{{(
+                                                        route('remove_admin','admin='.$admin->person_id)
+                                                        )}}" style="color: white;" >Xoá</a>
+                                                </button>
+                                            </td>
+                                            @endif
+                                        </tr>
+                                    @endforeach
+                                @endif
+
                             </tbody>
                         </table>
+                        {{ $admins->links() }}
                     </div>
                     <!-- /.table-responsive -->
                 </div>
