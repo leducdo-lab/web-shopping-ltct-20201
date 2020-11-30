@@ -30,6 +30,12 @@ Route::post('/login', [
     'as'=> 'login',
     'uses' => 'PageController@postLogin'
 ]);
+
+Route::get('/info/{id}', [
+    'as'=> 'info_user',
+    'uses' => 'UserController@getInfo_User'
+]);
+
 // Đăng ký người dùng
 Route::get('/register', [
     'as'=> 'register',
@@ -51,6 +57,11 @@ Route::get('/logout', [
 Route::get('/admin/dashboard', [
     'as'=>'dashboard',
     'uses'=>'AdminController@getIndex'
+]);
+
+Route::get('/admin/logout', [
+    'as'=>'logout_admin',
+    'uses'=> 'AdminController@logoutAdmin'
 ]);
 
 Route::get('/admin/list_product', [

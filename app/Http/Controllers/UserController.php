@@ -2,12 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\User;
 use App\Address;
 
 class UserController extends Controller
 {
+
+    public function getInfo_User(Request $req) {
+
+        $user_id = $req->cookie('user_id');
+
+        $user = DB::table('users')
+                ->join('persons','persons.id','=','users.person_id')
+                ->where('persons.id',$user_id)
+                ->get();
+
+        $address = DB::table('address')->select('address_name')
+                    ->where('user_id', $user[0]->id)
+                    ->get();
+
+        return view('page.info_user',
+        [
+            'user' => $user,
+            'address' => $address
+        ]);
+
+    }
+
     public function getRegister_User() {
         return view('page.register');
     }
@@ -44,11 +67,13 @@ class UserController extends Controller
 
         $this->createAddress($req->address, $info_user[0]->id);
 
-        $name_cookie = cookie('name', $req->full_name->full_name, time() + 10000000);
+        $name_cookie = cookie('name', $req->full_name, time() + 10000000);
+        $id_cookie = cookie('user_id', $info_user[0]->id, time() + 10000000);
 
         return redirect()->route('home_1')
             ->with(['name'=>$info_user[0]->full_name])
-            ->withCookie($name_cookie);
+            ->withCookie($name_cookie)
+            ->withCookie($id_cookie);
     }
 
     public function createUser($phone, $full_name, $person_id) {

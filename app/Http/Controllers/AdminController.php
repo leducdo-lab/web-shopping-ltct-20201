@@ -20,7 +20,7 @@ class AdminController extends Controller
         $persons = Person::all()->count();
         $products = Products::all()->count();
         $orders = Orders::all()->count();
-        
+
         if(Auth::check()) {
             return view('admin.dashboard')
             ->with(
@@ -39,6 +39,14 @@ class AdminController extends Controller
                 ]);
         }
 
+    }
+
+    public function logoutAdmin() {
+
+        setcookie('email', '', time()-100);
+
+        Auth::logout();
+        return redirect()->route('home');
     }
 
     public function getListProduct() {

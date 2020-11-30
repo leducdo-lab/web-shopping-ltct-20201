@@ -55,8 +55,10 @@ class PageController extends Controller
                     ->first();
 
                 $name_cookie = cookie('name', $_user->full_name, time() +$minutes);
+                $user_id_cookie = cookie('user_id', $_user->person_id, time() +$minutes);
                 return redirect()->route('home_1')
-                    ->withCookie($name_cookie);
+                    ->withCookie($name_cookie)
+                    ->withCookie($user_id_cookie);
 
             } else {
                 $_admin = DB::table('admins')
@@ -79,8 +81,10 @@ class PageController extends Controller
     }
 
     public function getLogout() {
+
         setcookie('name', '', time()-100);
-        setcookie('email', '', time()-100);
+        setcookie('user_id', '', time()-100);
+
         Auth::logout();
         return redirect()->route('home');
     }

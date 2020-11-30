@@ -10,7 +10,7 @@
             <div class="container">
             <div class="col-sm-5 col-md-offset-2  header-login">
                         <ul >
-                            @if (empty($name) == true)
+                            @if (empty(Cookie::get('name')))
                                 <li><a href="{{(URL::to('/login'))}}">Login</a></li>
                                 <li><a href="{{(URL::to('/register'))}}">Register</a></li>
                             @endif
@@ -185,13 +185,13 @@
                 <li><a class="color4" href="404.html">About</a></li>
                 <li ><a class="color6" href="contact.html">Contact</a></li>
                 <!-- Thông tin người dùng. -->
-                @if(!empty($name))
+                @if(!empty(Cookie::get('name')))
                     <li class="dropdown mega-dropdown active">
-                        <a class="color2" href="#" class="dropdown-toggle" data-toggle="dropdown">{{ $name }}<span class="caret"></span></a>
+                        <a class="color2" href="#" class="dropdown-toggle" data-toggle="dropdown">{{ Cookie::get('name') }}<span class="caret"></span></a>
                         <div class="dropdown-menu mega-dropdown-menu">
                                 <div class="h_nav">
                                         <ul style="list-style-type: none;">
-                                            <li><a href="">Thông tin</a></li>
+                                            <li><a href="{{(URL::to('/info'.'/'.Cookie::get('user_id')))}}">Thông tin</a></li>
                                             <li><a href="{{(URL::to('/logout'))}}">Đăng xuất</a></li>
                                         </ul>
                                 </div>
