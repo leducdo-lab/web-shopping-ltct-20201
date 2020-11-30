@@ -23,19 +23,19 @@
                         <div class="form-group">
                             <label for="number" class="col-sm-2 control-label">Số lượng sản phẩm</label>
                             <div class="col-sm-8">
-                                <input  type="text" class="form-control1" name="number" id="number" placeholder="Số lượng sản phẩm">
+                                <input  type="number" class="form-control1" name="number" id="number" placeholder="Số lượng sản phẩm">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="value" class="col-sm-2 control-label">Giá gốc</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="value" id="value" placeholder="Giá gốc">
+                                <input type="number" class="form-control1" name="value" id="value" placeholder="Giá gốc">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="price" class="col-sm-2 control-label">Giá bán</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1" name="price" id="price" placeholder="Giá bán">
+                                <input type="number" class="form-control1" name="price" id="price" placeholder="Giá bán">
                             </div>
                         </div>
                         <div class="form-group">

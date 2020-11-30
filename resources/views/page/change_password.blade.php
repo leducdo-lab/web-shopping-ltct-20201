@@ -19,11 +19,14 @@
                         <div class="alert alert-{{ Session::get('flag') }}">{{ Session::get('message') }}</div>
                     @endif
                     @if (!empty($errors))
-                        @foreach($errors as $error)
-                                <div class="alert alert-{{ Session::get('flag') }}">{{ Session::get('message') }}</div>
-                            @endforeach
-                        @endif
-                                <div class="login-mail">
+                        @foreach($errors->all() as $error)
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                    @endif
+                    @if(Session::has('error'))
+                        <div class="alert alert-danger">{{ Session::get('error') }}</div>
+                    @endif
+                        <div class="login-mail">
                             <input type="password" name="password_fu" placeholder="Password cũ" required="">
                             <i class="glyphicon glyphicon-lock"></i>
                         </div>
