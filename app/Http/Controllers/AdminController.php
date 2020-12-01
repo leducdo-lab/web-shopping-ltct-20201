@@ -44,7 +44,7 @@ class AdminController extends Controller
     public function logoutAdmin() {
 
         setcookie('email', '', time()-100);
-
+        setcookie('main_admin', time() - 100);
         Auth::logout();
         return redirect()->route('home');
     }
@@ -61,6 +61,7 @@ class AdminController extends Controller
                     ->paginate(10);
 
         $users->setPath('list_user/url');
+        
         return view('admin.list_user', ['users' => $users]);
     }
 

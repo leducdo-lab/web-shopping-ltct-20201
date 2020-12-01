@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
 use App\User;
 use App\Address;
 use App\Person;
+
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Hashing\BcryptHasher;
 
 class UserController extends Controller
 {
@@ -43,13 +47,11 @@ class UserController extends Controller
 
     public function postChangePassWord(Request $req) {
 
-        $user_id = $req->cookie('user_id');
-
         $this->validate($req,
         [
-           'password_fu' => 'required|min:8',
-           'password_new' => 'required|min:8',
-           're_password_new' => 'required|min:8|same:password_new'
+            'password_fu' => 'required|min:8',
+            'password_new' => 'required|min:8|different:password_fu',
+            're_password_new' => 'required|min:8|same:password_new'
         ],
         [
             'password_fu.required' => 'Vui lòng nhập mật khẩu cũ',
@@ -61,21 +63,21 @@ class UserController extends Controller
             're_password_new.same' => 'Vui lòng nhập lại xác định mật khẩu'
         ]);
 
+        if (!Hash::check($req->get('password_fu'), Auth::user()->password)) {
+            return redirect()->back()->with(['error'=>'Mật khẩu cũ không đúng']);
+        } else {
+            $user = Person::find(Auth::user()->id);
+            $user->password = (new BcryptHasher)->make($req->get('password_new'));
 
-        $person_id = DB::table('users')->select('person_id')
-            ->where('id',$user_id)->get();
-
-        $person = Person::find($person_id[0]->person_id);
-        $person->password = Hash::make($req->password_new);
-
-        $person->save();
-
-        return redirect()->route('home');
+            if($user->save()) {
+                return redirect()->route('home_1');
+            }
+        }
 
     }
 
     public function postRegister_User(Request $req) {
-        // dd($req);
+
         $this->validate($req,
         [
             'email' =>'required|email|unique:persons,email',

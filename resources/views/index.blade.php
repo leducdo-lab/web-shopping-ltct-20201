@@ -43,7 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <div class="left-side sticky-left-side">
         <!--logo and iconic logo start-->
         <div class="logo">
-            <h1><a href="{{(route('dashboard'))}}">Easy <span>Admin</span></a></h1>
+            <h1><a href="{{(route('dashboard'))}}"><span>Admin</span></a></h1>
         </div>
         <div class="logo-icon text-center">
             <a href="{{(route('dashboard'))}}"><i class="lnr lnr-home"></i> </a>

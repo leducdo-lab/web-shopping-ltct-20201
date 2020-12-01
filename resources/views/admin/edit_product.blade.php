@@ -34,7 +34,7 @@
                             <label for="number" class="col-sm-2 control-label">Số lượng sản phẩm</label>
                             <div class="col-sm-8">
                                 <input
-                                    type="text"
+                                    type="number"
                                     class="form-control1"
                                     name="number"
                                     id="number"
@@ -46,7 +46,7 @@
                         <div class="form-group">
                             <label for="value" class="col-sm-2 control-label">Giá gốc</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1"
+                                <input type="number" class="form-control1"
                                     name="value" id="value"
                                     placeholder="Giá gốc" value="{{( $product[0]->unit_value ? $product[0]->unit_value : "")}}"
                                 >
@@ -55,7 +55,7 @@
                         <div class="form-group">
                             <label for="price" class="col-sm-2 control-label">Giá bán</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control1"
+                                <input type="number" class="form-control1"
                                     name="price" id="price"
                                     value="{{($product[0]->unit_price ? $product[0]->unit_price : "")}}"
                                     placeholder="Giá bán"
