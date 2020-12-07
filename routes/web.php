@@ -31,7 +31,7 @@ Route::post('/login', [
     'uses' => 'PageController@postLogin'
 ]);
 
-Route::get('/info/{id}', [
+Route::get('/info', [
     'as'=> 'info_user',
     'uses' => 'UserController@getInfo_User'
 ]);

@@ -81,7 +81,7 @@ class UserController extends Controller
         $this->validate($req,
         [
             'email' =>'required|email|unique:persons,email',
-            'password'=>'required|min:8',
+            'password'=>'required|min:8|',
             'full_name' =>'required',
             'phone'=>'required',
             'address'=>'required'

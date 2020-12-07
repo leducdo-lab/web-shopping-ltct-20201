@@ -56,7 +56,7 @@ class PageController extends Controller
 
                 $name_cookie = cookie('name', $_user->full_name, time() +$minutes);
                 $user_id_cookie = cookie('user_id', $_user->person_id, time() +$minutes);
-                return redirect()->route('home_1')
+                return redirect()->route('info_user')
                     ->withCookie($name_cookie)
                     ->withCookie($user_id_cookie);
 
@@ -67,7 +67,8 @@ class PageController extends Controller
                     ->first();
 
                 $email_cookie = cookie('email', $_admin->email, time() + $minutes);
-                $main_admin = cookie('main_admin', $_admin->is_main_admin, time() +$minutes);
+                $main_admin = cookie('main_admin', ((boolean)$_admin->is_main_admin), time() +$minutes);
+//                dd($main_admin);
                 return redirect()->route('dashboard')
                     ->withCookie($email_cookie)
                     ->withCookie($main_admin);
