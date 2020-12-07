@@ -15,10 +15,10 @@
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <input type="hidden" name="user_id" >
                 <div class="col-md-6 login-do">
-                    @if(Session::has('flag'))
+                    @if(Session::has('flag'))   {{-- khi dang nhap k thanh cong--}}
                         <div class="alert alert-{{ Session::get('flag') }}">{{ Session::get('message') }}</div>
                     @endif
-                    @if (!empty($errors))
+                    @if (!empty($errors))   {{--khi nhap sai cac truong du lieu--}}
                         @foreach($errors->all() as $error)
                             <div class="alert alert-danger">{{ $error }}</div>
                         @endforeach

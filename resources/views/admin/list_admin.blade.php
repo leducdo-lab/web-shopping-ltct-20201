@@ -16,7 +16,7 @@
                             <tr>
                                 {{-- <th>#</th> --}}
                                 <th>Email</th>
-                                @if (Cookie::get('main_admin') == true)
+                                @if ((boolean)Cookie::get('main_admin') == true)
                                     <th>Sửa</th>
                                     <th>Xoá</th>
                                 @endif
@@ -29,7 +29,7 @@
                                         <tr class="active">
                                             {{-- <th scope="row">1</th> --}}
                                             <td>{{($admin->email)}}</td>
-                                            @if($admin->is_main_admin)
+                                            @if((boolean)Cookie::get('main_admin') == true)
                                             <td>
                                                 <div class="dropdown">
                                                     <button class="btn btn-info dropdown-toggle" type="button" data-toggle="dropdown">

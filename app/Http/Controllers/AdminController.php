@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -41,11 +42,13 @@ class AdminController extends Controller
 
     }
 
-    public function logoutAdmin() {
-
-        setcookie('email', '', time()-100);
-        setcookie('main_admin', time() - 100);
-        Auth::logout();
+    public function logoutAdmin(Request $req) {
+        if (Cookie::has('email') && Cookie::has('main_admin')) {
+            Cookie::forget('email');
+            Cookie::forget('main_admin');
+            Auth::logout();
+            return redirect()->route('home');
+        }
         return redirect()->route('home');
     }
 
@@ -61,7 +64,7 @@ class AdminController extends Controller
                     ->paginate(10);
 
         $users->setPath('list_user/url');
-        
+
         return view('admin.list_user', ['users' => $users]);
     }
 
