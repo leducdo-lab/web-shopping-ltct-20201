@@ -90,4 +90,10 @@ class PageController extends Controller
         return redirect()->route('home');
     }
 
+    public function getProduct(){
+        return view('product.product');
+    }
+    public function getSingle(){
+        return view('product.single');
+    }
 }
