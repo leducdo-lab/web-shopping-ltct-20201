@@ -133,5 +133,16 @@ Route::get('/admin/remove', [
     'as'=>'remove_admin',
     'uses'=>'AdminController@getRemoveAdmin'
 ]);
-
 // end bên admin
+
+Route::get('/home/product', [
+    'as'=>'product',
+    'uses'=>'PageController@getProduct'
+]);
+
+Route::get('/home/single', [
+    'as'=>'single',
+    'uses'=>'PageController@getSingle'
+]);
+
+
