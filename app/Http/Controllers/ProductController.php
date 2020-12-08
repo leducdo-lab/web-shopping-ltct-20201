@@ -9,6 +9,7 @@ use App\Product_Type;
 use App\Accessories_PK;
 use App\Products;
 use App\Images;
+use App\Order_Detail;
 use App\PK_Product;
 
 
@@ -208,5 +209,50 @@ class ProductController extends Controller
         }
     }
 
+    public function getProduct(){
+        $product_id = 1;
+        $product = Products::find($product_id);
+        $image = Images::select('id', 'url')
+                ->where('product_id', $product_id)
+                ->get();
+        $accessories = Accessories_PK::select('name', 'price')
+                                ->join('product_accesso', 'accessories.id', '=','product_accesso.accessories_id' )
+                                ->where('product_id', $product_id)
+                                ->get();
+        return view('product.single',
+        [
+            'product' => $product,
+            'images' => $image,
+            'accessories' => $accessories
+        ]);
+    }
 
+    public function getTrending(){
+        $trend = Order_Detail::select('product_id')
+                            ->groupBy('product_id')
+                            ->limit(8)
+                            ->orderBy(DB::raw('COUNT(product_id)'),'desc')
+                            ->get();
+            $product = array();
+        foreach ($trend as $t){
+            array_push($product,Products::select('name', 'unit_price', 'url', 'product.id')
+                                ->join('image', 'image.product_id','=','product.id')
+                                ->where('product.id', '=', $t)
+                                ->get()
+        );
+        }
+        return view('page.home',
+        [
+            'trending' => $product
+        ]);
+    }
+    public function getAllProduct(){
+        $product = Products::select('name', 'unit_price', 'url', 'product.id')
+                            ->leftJoin('image', 'image.product_id','=','product.id')
+                            ->get();
+        return view('product.product',
+        [
+            'products' => $product 
+        ]);
+    }
 }
