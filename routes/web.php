@@ -13,7 +13,8 @@
 
 Route::get('/', [
     'as' => 'home',
-    'uses' => 'PageController@getIndex'
+    'uses' => 'PageController@getIndex',
+    'uses' => 'ProductController@getTrending'
 ]);
 
 Route::get('/home', [
@@ -137,12 +138,12 @@ Route::get('/admin/remove', [
 
 Route::get('/home/product', [
     'as'=>'product',
-    'uses'=>'PageController@getProduct'
+    'uses'=>'ProductController@getAllProduct'
 ]);
 
 Route::get('/home/single', [
     'as'=>'single',
-    'uses'=>'PageController@getSingle'
+    'uses'=>'ProductController@getProduct'
 ]);
 
 
