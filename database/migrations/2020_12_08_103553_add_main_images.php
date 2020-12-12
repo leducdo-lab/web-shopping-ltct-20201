@@ -13,7 +13,10 @@ class AddMainImages extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('image', function (Blueprint $table) {
+            //
+            $table->boolean('main');
+        });
     }
 
     /**
@@ -23,6 +26,9 @@ class AddMainImages extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('image', function (Blueprint $table) {
+            //
+            $table->dropColumn('main');
+        });
     }
 }
