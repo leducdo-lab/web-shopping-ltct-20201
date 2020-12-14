@@ -62,7 +62,7 @@
         <div class="container">
             <h1>Single</h1>
             <em></em>
-            <h2><a href="index.html">Home</a><label>/</label>Single</h2>
+            <h2><a href="{{route('home')}}">Home</a><label>/</label>Single</h2>
         </div>
     </div>
     <div class="single">

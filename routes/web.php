@@ -14,7 +14,7 @@
 Route::get('/', [
     'as' => 'home',
     'uses' => 'PageController@getIndex',
-    'uses' => 'ProductController@getTrending'
+    'uses' => 'SearchController@getTrending'
 ]);
 
 Route::get('/home', [
@@ -138,12 +138,25 @@ Route::get('/admin/remove', [
 
 Route::get('/home/product', [
     'as'=>'product',
-    'uses'=>'ProductController@getAllProduct'
+    'uses'=>'SearchController@getAllProduct'
 ]);
 
 Route::get('/home/single', [
     'as'=>'single',
-    'uses'=>'ProductController@getProduct'
+    'uses'=>'SearchController@getProduct'
 ]);
 
+Route::post('/home/search', [
+    'as'=>'search',
+    'uses'=>'SearchController@postSearch'
+]);
 
+Route::get('/home/type',[
+    'as'=>'type',
+    'uses'=>'SearchController@getProductsType'
+]);
+
+Route::get('/home/cost',[
+    'as'=>'cost',
+    'uses'=>'SearchController@getProductsCost'
+]);
