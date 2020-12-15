@@ -6,10 +6,22 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use Illuminate\Support\Facades\View;
+use App\TestProvider\HelloRepository;
 
 class PageController extends Controller
 {
+    protected $helloRepository;
+
+    public function __construct(HelloRepository $prodRepository)
+    {
+        $this->helloRepository = $prodRepository;
+    }
+
+    public function index()
+    {
+        $products = $this->helloRepository->showHelloWorld();
+        return view('test',['products'=>$products]);
+    }
 
     public function getIndex(Request $req) {
 
@@ -23,6 +35,10 @@ class PageController extends Controller
 
     public function getLogin() {
         return view('page.login');
+    }
+
+    public function getCart(){
+        return view('page.cart');
     }
 
     public function postLogin(Request $req) {

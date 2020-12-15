@@ -52,7 +52,7 @@
         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
             <ul class="nav navbar-nav nav_1">
                 <li><a class="color" href="{{(URL::to('/home'))}}">Home</a></li>
-                <li><a class="color" href="{{ route('product') }}">All product</a></li>  
+                <li><a class="color" href="{{ route('product') }}">All product</a></li>
 
                 <li class="dropdown mega-dropdown active">
                     <a class="color1" href="#" class="dropdown-toggle" data-toggle="dropdown">Women<span class="caret"></span></a>
@@ -60,14 +60,14 @@
                         <div class="menu-top">
                             <div class="col1">
                                 <div class="h_nav">
-                                    
+
                                         <ul>
                                             @if (!empty($types))
-                                            @for ($i=0 ; $i<=5 ; $i++ ) 
+                                            @for ($i=0 ; $i<=5 ; $i++ )
                                             <li><a href="{{ route('type','type='.$types[$i]->id) }}">{{$types[$i]->name}}</a></li>
                                                 @if(count($types) < $i + 2) @break; @endif
                                             @endfor
-                                            @endif 
+                                            @endif
                                         </ul>
                                 </div>
                             </div>
@@ -75,12 +75,12 @@
                                 <div class="h_nav">
                                     <ul>
                                             @if (!empty($types))
-                                            @for ($i=6 ; $i<=10 ; $i++ ) 
+                                            @for ($i=6 ; $i<=10 ; $i++ )
                                             @if(count($types) < $i + 2) @break; @endif
                                             <li><a href="{{ route('type','type='.$types[$i]->id) }}">{{$types[$i]->name}}</a></li>
-                                                
+
                                             @endfor
-                                            @endif 
+                                            @endif
                                         </ul>
                                 </div>
                             </div>
@@ -88,16 +88,16 @@
                                 <div class="h_nav">
                                     <ul>
                                             @if (!empty($types))
-                                            @for ($i=11 ; $i<=15 ; $i++ ) 
+                                            @for ($i=11 ; $i<=15 ; $i++ )
                                             @if(count($types) < $i + 2) @break; @endif
                                             <li><a href="{{ route('type','type='.$types[$i]->id) }}">{{$types[$i]->name}}</a></li>
-                                                
+
                                             @endfor
-                                            @endif 
+                                            @endif
                                         </ul>
                                 </div>
                             </div>
-                            
+
                             <div class="col1 col5">
                             <img src="images/me.png" class="img-responsive" alt="">
                             </div>
@@ -136,10 +136,10 @@
                     <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i></a></li>
                         </ul>
                         <div class="cart box_1">
-                            <a href="checkout.html">
+                            <a href="{{(route('cart'))}}">
                             <h3> <div class="total">
                                 <span class="simpleCart_total"></span></div>
-                                <img src="images/cart.png" alt=""/></h3>
+                                <img src="{{(url('images/cart.png'))}}" alt=""/></h3>
                             </a>
                             <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
 

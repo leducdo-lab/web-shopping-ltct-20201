@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('/test_provider', [
+    'as'=> 'test_provider',
+    'uses'=> 'PageController@index'
+]);
+
 Route::get('/', [
     'as' => 'home',
     'uses' => 'PageController@getIndex',
@@ -45,6 +50,11 @@ Route::get('/change_password', [
 Route::post('/change_password',[
     'as'=> 'change_password',
     'uses' => 'UserController@postChangePassWord'
+]);
+
+Route::get('/cart', [
+    'as'=> 'cart',
+    'uses' => 'PageController@getCart'
 ]);
 
 // Đăng ký người dùng
