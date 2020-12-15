@@ -26,7 +26,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!--- start-rate---->
         <script src="{{('js/jstarbox.js')}}"></script>
         <link rel="stylesheet" href="{{('css/jstarbox.css')}}" type="text/css" media="screen" charset="utf-8" />
-        <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
         <script type="text/javascript">
             jQuery(function() {
                 jQuery('.starbox').each(function() {
