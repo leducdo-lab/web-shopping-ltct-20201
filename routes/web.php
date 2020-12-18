@@ -170,3 +170,13 @@ Route::get('/home/cost',[
     'as'=>'cost',
     'uses'=>'SearchController@getProductsCost'
 ]);
+
+Route::post('/home/add_cart',[
+    'as'=>'add_cart',
+    'uses'=>'CartController@postProducts'
+]);
+
+Route::get('/home/cart',[
+    'as'=>'cart',
+    'uses'=>'CartController@getCart'
+]);
