@@ -67,28 +67,29 @@
                 </div>
             </div>
             </div>
+            @foreach($trendings as $trend)
             <div class="col-md-3 item-grid simpleCart_shelfItem">
             <div class=" mid-pop">
             <div class="pro-img">
                 <img src="images/pc1.jpg" class="img-responsive" alt="">
                 <div class="zoom-icon ">
                 <a class="picture" href="images/pc1.jpg" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                <a href="single.html"><i class="glyphicon glyphicon-menu-right icon"></i></a>
+                <a href="{{route('single','product_id='.$trend->id)}}"><i class="glyphicon glyphicon-menu-right icon"></i></a>
                 </div>
                 </div>
                 <div class="mid-1">
                 <div class="women">
                 <div class="women-top">
-                    <span>Women</span>
-                    <h6><a href="single.html">At vero eos</a></h6>
+                    
+                    <h6><a href="{{route('single','product_id='.$trend->id)}}">{{$trend->name}}</a></h6>
                     </div>
                     <div class="img item_add">
-                        <a href="#"><img src="images/ca.png" alt=""></a>
+                        <a href="{{route('single','product_id='.$trend->id)}}"><img src="images/{{$trend->url}}" alt=""></a>
                     </div>
                     <div class="clearfix"></div>
                     </div>
                     <div class="mid-2">
-                        <p ><em class="item_price">$70.00</em></p>
+                        <p ><em class="item_price">{{$trend->unit_price}}</em></p>
                             <div class="block">
                             <div class="starbox small ghosting"> </div>
                         </div>
@@ -99,6 +100,11 @@
                 </div>
             </div>
             </div>
+            @endforeach
+            
+
+
+
             <div class="col-md-3 item-grid simpleCart_shelfItem">
             <div class=" mid-pop">
             <div class="pro-img">

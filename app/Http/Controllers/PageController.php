@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
+use App\Order_Detail;
+use App\Products;
 use App\TestProvider\HelloRepository;
 
 class PageController extends Controller
@@ -26,11 +28,27 @@ class PageController extends Controller
     public function getIndex(Request $req) {
 
         $cookie = $req->cookie('name');
-
+        $trend = Order_Detail::select('product_id')
+                            ->groupBy('product_id')
+                            ->limit(8)
+                            ->orderBy(DB::raw('COUNT(product_id)'),'desc')
+                            ->get();
+            $product = array();
+        foreach ($trend as $t){
+            array_push($product,Products::select('name', 'unit_price', 'url', 'product.id')
+                                ->join('image', 'image.product_id','=','product.id')
+                                ->where([
+                                    ['product.id', '=', $t],
+                                    ['image.main', '=', '1'],
+                                ])
+                                ->get()
+        );
+        }
+    
         if(empty($cookie) == false)
-            return view('page.home')->with(['name' => $cookie]);
+            return view('page.home')->with(['name' => $cookie, 'trendings' => $product]);
         else
-            return view('page.home');
+            return view('page.home')->with(['trendings' => $product]);
     }
 
     public function getLogin() {
