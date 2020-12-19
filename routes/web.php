@@ -18,8 +18,7 @@ Route::get('/test_provider', [
 
 Route::get('/', [
     'as' => 'home',
-    'uses' => 'PageController@getIndex',
-    'uses' => 'SearchController@getTrending'
+    'uses' => 'PageController@getIndex'
 ]);
 
 Route::get('/home', [

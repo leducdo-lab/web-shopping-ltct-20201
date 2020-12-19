@@ -3,15 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-use App\Product_Type;
 use App\Accessories_PK;
 use App\Products;
 use App\Images;
-use App\Order_Detail;
-use App\PK_Product;
-use Mockery\Undefined;
+
 
 class SearchController extends Controller
 {
@@ -35,23 +31,7 @@ class SearchController extends Controller
     }
 
     public function getTrending(){
-        $trend = Order_Detail::select('product_id')
-                            ->groupBy('product_id')
-                            ->limit(8)
-                            ->orderBy(DB::raw('COUNT(product_id)'),'desc')
-                            ->get();
-            $product = array();
-        foreach ($trend as $t){
-            array_push($product,Products::select('name', 'unit_price', 'url', 'product.id')
-                                ->join('image', 'image.product_id','=','product.id')
-                                ->where('product.id', '=', $t)
-                                ->get()
-        );
-        }
-        return view('page.home',
-        [
-            'trending' => $product
-        ]);
+        
     }
     public function getAllProduct(){
         $product = Products::select('name', 'unit_price', 'url', 'product.id')
