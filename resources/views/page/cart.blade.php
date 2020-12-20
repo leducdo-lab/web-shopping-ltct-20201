@@ -33,6 +33,11 @@
 					});
 			   </script>
 <div class="check-out">
+    @if (Session::has('success'))
+            <div class="alert alert-{{ Session::get('success') }}">
+                {{( Session::get('message') )}}
+            </div>
+        @endif
 <div class="container">
 
 	<div class="bs-example4" data-example-id="simple-responsive-table">
@@ -42,56 +47,28 @@
 			<th class="table-grid">Item</th>
 
 			<th>Prices</th>
-			<th >Delivery </th>
-			<th>Subtotal</th>
+			<th>Amount</th>
 		  </tr>
+		  @foreach ( $carts as $cart)
 		  <tr class="cart-header">
 
-			<td class="ring-in"><a href="single.html" class="at-in"><img src="images/ch.jpg" class="img-responsive" alt=""></a>
+			<td class="ring-in"><a href="single.html" class="at-in"><img src="images/{{$cart->url}}" class="img-responsive" alt=""></a>
 			<div class="sed">
-				<h5><a href="single.html">Sed ut perspiciatis unde</a></h5>
-				<p>(At vero eos et accusamus et iusto odio dignissimos ducimus ) </p>
+				<h5><a href="{{route('single','product_id='.$cart->product_id)}}">{{$cart->name}}</a></h5>
+			</div>
+			<div class="clearfix"> </div>
 
-			</div>
-			<div class="clearfix"> </div>
+			<td>{{$cart->unit_price}}</td>
+			<td class="item_price">{{$cart->amount}}</td>
 			<div class="close1"> </div></td>
-			<td>$100.00</td>
-			<td>FREE SHIPPING</td>
-			<td class="item_price">$100.00</td>
-			<td class="add-check"><a class="item_add hvr-skew-backward" href="#">Add To Cart</a></td>
 		  </tr>
-		  <tr class="cart-header1">
-		  <td class="ring-in"><a href="single.html" class="at-in"><img src="images/ch2.jpg" class="img-responsive" alt=""></a>
-			<div class="sed">
-				<h5><a href="single.html">Sed ut perspiciatis unde</a></h5>
-				<p>(At vero eos et accusamus et iusto odio dignissimos ducimus ) </p>
-			</div>
-			<div class="clearfix"> </div>
-			<div class="close2"> </div></td>
-			<td>$100.00</td>
-			<td>FREE SHIPPING</td>
-			<td class="item_price">$100.00</td>
-			<td class="add-check"><a class="item_add hvr-skew-backward" href="#">Add To Cart</a></td>
-		  </tr>
-		  <tr class="cart-header2">
-		  <td class="ring-in"><a href="single.html" class="at-in"><img src="images/ch1.jpg" class="img-responsive" alt=""></a>
-			<div class="sed">
-				<h5><a href="single.html">Sed ut perspiciatis unde</a></h5>
-				<p>(At vero eos et accusamus et iusto odio dignissimos ducimus ) </p>
-			</div>
-			<div class="clearfix"> </div>
-			<div class="close3"> </div></td>
-			<td>$100.00</td>
-			<td>FREE SHIPPING</td>
-			<td class="item_price">$100.00</td>
-			<td class="add-check"><a class="item_add hvr-skew-backward" href="#">Add To Cart</a></td>
-		  </tr>
+		  @endforeach
 
 	</table>
 	</div>
 	</div>
 	<div class="produced">
-	<a href="single.html" class="hvr-skew-backward">Produced To Buy</a>
+	<a href="{{(route('checkout'))}}" class="hvr-skew-backward">Produced To Buy</a>
 	 </div>
 </div>
 </div>

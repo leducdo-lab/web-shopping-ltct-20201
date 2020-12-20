@@ -66,7 +66,11 @@
         </div>
     </div>
     <div class="single">
-
+        @if (Session::has('success'))
+            <div class="alert alert-{{ Session::get('success') }}">
+                {{( Session::get('message') )}}
+            </div>
+        @endif
         <div class="container">
             <div class="col-md-9">
                 <div class="col-md-5 grid">
@@ -103,21 +107,31 @@
                                 <div class="entry value-plus active">&nbsp;</div>
                             </div>
                         </div>
+                        
+                        <form action="{{route('add_cart')}}" method="POST">
+                            @csrf
+                            <input type="hidden" name="amount" value="1" id="amount"/>
+                            <input type="hidden" name="product_id" value="{{($product->id)}}"/>
+                            <button class="add-to item_add hvr-skew-backward" type="submit">Add to cart</button>
+                        </form>
                         <!--quantity-->
                         <script>
                             $('.value-plus').on('click', function(){
+                                
                                 var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)+1;
+                                document.getElementById('amount').value = newVal;
                                 divUpd.text(newVal);
                             });
 
                             $('.value-minus').on('click', function(){
                                 var divUpd = $(this).parent().find('.value'), newVal = parseInt(divUpd.text(), 10)-1;
-                                if(newVal>=1) divUpd.text(newVal);
+                                if(newVal>=1) {
+                                    document.getElementById('amount').value = newVal;
+                                    divUpd.text(newVal);
+                                }
                             });
                         </script>
                         <!--quantity-->
-
-                        <a href="#" class="add-to item_add hvr-skew-backward">Add to cart</a>
                         <div class="clearfix"> </div>
                     </div>
 

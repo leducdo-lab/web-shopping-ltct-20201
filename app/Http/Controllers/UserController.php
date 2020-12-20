@@ -19,10 +19,9 @@ class UserController extends Controller
     public function getInfo_User(Request $req) {
 
         $user_id = $req->cookie('user_id');
-
-        $user = DB::table('users')
+        $user = DB::table('users')->select('users.id', 'email', 'phone', 'person_id', 'full_name')
                 ->join('persons','persons.id','=','users.person_id')
-                ->where('persons.id',$user_id)
+                ->where('users.id',$user_id)
                 ->get();
 
         $address = DB::table('address')->select('address_name')
@@ -131,6 +130,7 @@ class UserController extends Controller
         // dd($user_id);
         $address->address_name = $in_address;
         $address->user_id = $user_id;
+        $address->main = 1;
         $address->save();
     }
 

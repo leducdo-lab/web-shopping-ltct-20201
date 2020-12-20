@@ -18,8 +18,7 @@ Route::get('/test_provider', [
 
 Route::get('/', [
     'as' => 'home',
-    'uses' => 'PageController@getIndex',
-    'uses' => 'SearchController@getTrending'
+    'uses' => 'PageController@getIndex'
 ]);
 
 Route::get('/home', [
@@ -169,4 +168,23 @@ Route::get('/home/type',[
 Route::get('/home/cost',[
     'as'=>'cost',
     'uses'=>'SearchController@getProductsCost'
+]);
+
+Route::post('/home/add_cart',[
+    'as'=>'add_cart',
+    'uses'=>'CartController@postProducts'
+]);
+
+Route::get('/home/cart',[
+    'as'=>'cart',
+    'uses'=>'CartController@getCart'
+]);
+
+Route::get('/home/checkout', [
+    'as' => 'checkout',
+    'uses' => 'CartController@getCheckout'
+]);
+Route::post('/home/checkout', [
+    'as' => 'checkout',
+    'uses' => 'CartController@postCheckout'
 ]);
