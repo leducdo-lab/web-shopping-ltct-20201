@@ -34,15 +34,17 @@ class PageController extends Controller
                             ->orderBy(DB::raw('COUNT(product_id)'),'desc')
                             ->get();
             $product = array();
+
         foreach ($trend as $t){
-            array_push($product,Products::select('name', 'unit_price', 'url', 'product.id')
+
+            array_push($product, Products::select('name', 'unit_price', 'url', 'product.id')
                                 ->join('image', 'image.product_id','=','product.id')
                                 ->where([
-                                    ['product.id', '=', $t],
+                                    ['product.id', '=', $t->product_id],
                                     ['image.main', '=', '1'],
                                 ])
                                 ->get()
-        );
+            );
         }
 
         if(empty($cookie) == false)

@@ -182,9 +182,9 @@ Route::get('/home/cart',[
 
 Route::get('/home/checkout', [
     'as' => 'checkout',
-    'uses' => 'CartController@getCheckout'
+    'uses' => 'PayController@getCheckout'
 ]);
 Route::post('/home/checkout', [
     'as' => 'checkout',
-    'uses' => 'CartController@postCheckout'
+    'uses' => 'PayController@postCheckout'
 ]);
