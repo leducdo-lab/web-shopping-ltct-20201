@@ -31,17 +31,17 @@ class SearchController extends Controller
     }
 
     public function getTrending(){
-        
+
     }
     public function getAllProduct(){
         $product = Products::select('name', 'unit_price', 'url', 'product.id')
                                 ->leftJoin('image', 'image.product_id','=','product.id')
                                 ->where('main', '=', '1')
                                 ->get();
-       
+                                
         return view('product.product',
         [
-            'products' => $product 
+            'products' => $product
         ]);
     }
 
@@ -56,7 +56,7 @@ class SearchController extends Controller
                             ->get();
         return view('product.product',
         [
-            'products' => $product 
+            'products' => $product
         ]);
     }
     public function getProductsType(Request $req){
@@ -71,7 +71,7 @@ class SearchController extends Controller
 
         return view('product.product',
         [
-            'products' => $product 
+            'products' => $product
         ]);
     }
     public function getProductsCost(Request $req){
@@ -103,7 +103,7 @@ class SearchController extends Controller
 
         return view('product.product',
         [
-            'products' => $product 
+            'products' => $product
         ]);
     }
 }

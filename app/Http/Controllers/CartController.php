@@ -32,11 +32,11 @@ class CartController extends Controller
                         ])
                         ->get();
 
-        if($cart == null){
+        if(empty($cart[0])) {
             if($product_amount[0]->amount < $amount){
                 return redirect()->back()->with([
                     'success'=>'danger',
-                    'message'=>'Khong du hang']);
+                    'message'=>'Không đủ hàng']);
             }
             $cart = new Carts();
             $cart->product_id = $product_id;
@@ -46,7 +46,7 @@ class CartController extends Controller
             return redirect()->back()->with([
                 'success'=>'success',
                 'message'=>'Them thanh cong']);
-        }else{
+        } else{
             if($product_amount[0]->amount < $amount + $cart[0]->amount){
                 return redirect()->back()->with([
                     'success'=>'danger',
@@ -96,12 +96,12 @@ class CartController extends Controller
             ])
             ->get();
 
-            // if (empty($carts[0])) {
-            //     return redirect()->back()->with([
-            //     'success'=>'danger',
-            //     'message'=>'Bạn cần phải mua hàng'
-            //     ]);
-            // }
+            if (empty($carts[0])) {
+                return redirect()->back()->with([
+                'success'=>'danger',
+                'message'=>'Bạn cần phải mua hàng'
+                ]);
+            }
 
             $address = Address::select('address_name', 'full_name', 'phone')
             ->join('users', 'users.id', '=', 'address.user_id')
@@ -127,7 +127,7 @@ class CartController extends Controller
 
     public function postCheckout(Request $req) {
 
-        $user_id = $req->cookie('user_id');
+        $user_id = (int)$req->cookie('user_id');
 
         $address = Address::where('address_name', $req->address);
 
@@ -135,15 +135,16 @@ class CartController extends Controller
             $this->createAddress($req->address, $user_id);
         }
 
-        $address = Address::select('id')->where('address_name', $req->address);
+        $address = Address::select('id')->where('address_name', $req->address)->get();
 
-        $this->createOrder($req->total, $req->note, $user_id, $address[0]->id);
+        $this->createOrder((int)$req->total, $req->note, $user_id, $address[0]->id);
         $order = Orders::select('id')
             ->where('user_id', $user_id)
-            ->max('id')
-            ->get();
+            ->max('id');
+        // dd($order);
+        $this->createO_D($order, $user_id);
 
-        $this->createO_D($order[0]->id, $user_id);
+        Carts::where('user_id', $user_id)->delete();
 
         return redirect()->route('home_1');
 
