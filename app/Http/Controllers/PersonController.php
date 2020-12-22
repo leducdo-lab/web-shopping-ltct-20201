@@ -19,7 +19,6 @@ class PersonController extends Controller
 
     public function getPersonId($email) {
         $id = Person::select('id')->where('email', $email)->get();
-        // dd($id[0]->id);
         return $id[0]->id;
     }
 }

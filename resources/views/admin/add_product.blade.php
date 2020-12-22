@@ -4,6 +4,13 @@
         <div class="graphs">
             <div class="tab-content">
                 <div class="tab-pane active" id="horizontal-form">
+                    @if(count($errors) > 0)
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                {{ $error }} <br/>
+                            @endforeach
+                        </div>
+                    @endif
                     @if (Session::has('success'))
                         <div class="alert alert-{{ Session::get('success') }}">
                             {{( Session::get('message') )}}
@@ -29,13 +36,13 @@
                         <div class="form-group">
                             <label for="value" class="col-sm-2 control-label">Giá gốc</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control1" name="value" id="value" placeholder="Giá gốc">
+                                <input type="number" class="form-control1" name="value" id="value" placeholder="Giá gốc" step="10000" value="0">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="price" class="col-sm-2 control-label">Giá bán</label>
                             <div class="col-sm-8">
-                                <input type="number" class="form-control1" name="price" id="price" placeholder="Giá bán">
+                                <input type="number" class="form-control1" name="price" id="price" placeholder="Giá bán" step="10000" value="0">
                             </div>
                         </div>
                         <div class="form-group">

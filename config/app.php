@@ -178,7 +178,7 @@ return [
         /*
         * Test Service Providers...
         */
-        App\Providers\TestServiceProvider::class,
+        App\Providers\TestServiceProvider::class
 
     ],
 
