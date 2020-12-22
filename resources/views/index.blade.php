@@ -35,6 +35,49 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="{{('js/jquery-1.10.2.min.js')}}"></script>
     <!-- Placed js at the end of the document so the pages load faster -->
 
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 300px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, .4);
+            }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #popup {
+            width: 80%;
+            height: 100%;
+        }
+    </style>
+
 </head>
 
 <body class="sticky-header left-side-collapsed">
@@ -61,6 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{{(route('list_user'))}}">Danh sách người dùng</a> </li>
                         <li><a href="{{(route('list_admin'))}}">Danh sách admin</a> </li>
                         <li><a href="{{(route('list_product'))}}">Danh sách sản phẩm</a></li>
+                        <li><a href="{{(route('list_order'))}}">Danh sách đơn hàng</a></li>
                     </ul>
                 </li>
                 @if (Cookie::get('main_admin') == true)

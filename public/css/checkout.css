@@ -91,9 +91,9 @@ body {
 tr.shopping-cart-item {
     padding-top: 5px;
     padding-bottom: 5px;
-    height: 50px;
+    height: 40px;
     box-sizing: border-box;
-    line-height: 1.4em;
+    line-height: 1.5em;
 }
 tr.shopping-cart-item td {
     padding: 5px;
@@ -104,6 +104,7 @@ tr.shopping-cart-item td {
     width: 100%;
 }
 .cart-title {
+    width: 40%;
     color: #34a7e8;
 }
 .shopping-cart-total {
@@ -114,6 +115,7 @@ tr.shopping-cart-item td {
     padding-top: 15px;
 }
 .cart-price:after, .cart-price-total:after {
+    width: 60%;
     content: 'Đ';
 }
 .cart-price:not(.cart-price-total) {
@@ -214,7 +216,7 @@ tr.shopping-cart-item td {
 .city-input {
     width: 202px;
     height: 42px;
-    
+
 }
 
 #form-submit {

@@ -40,7 +40,6 @@
                             </li>
 
                             <li class="odd"><a href="#">
-                                    <div class="user_img"><img src="images/1.png" alt=""></div>
                                     <div class="notification_desc">
                                         <p>Lorem ipsum dolor sit amet </p>
                                         <p><span>1 hour ago</span></p>

@@ -54,10 +54,6 @@ class CartController extends Controller
         }
     }
 
-    public function removeProduct(Request $req){
-
-    }
-
     public function getCart(Request $req){
         $user_id = (int) $req->cookie('user_id');
 
@@ -76,6 +72,16 @@ class CartController extends Controller
         ]);
     }
 
+    public function removeCart(Request $req){
+        $user_id = (int) $req->cookie('user_id');
+        $product_id = $req->input('product_id');
+
+        Carts::where([
+            ['user_id','=',$user_id],
+            ['product_id','=',$product_id]])
+            ->delete();
+        return redirect()->back()->with(['success'=>'success', 'message'=>'Xoa thanh cong']);
+    }
 
 
 }

@@ -143,6 +143,18 @@ Route::get('/admin/remove', [
     'as'=>'remove_admin',
     'uses'=>'AdminController@getRemoveAdmin'
 ]);
+
+Route::get('/admin/order',[
+    'as'=>'list_order',
+    'uses'=>'AdminController@getOrderList'
+]);
+
+
+Route::post('/admin/order',[
+    'as'=>'list_order',
+    'uses'=>'AdminController@postOrder'
+]);
+
 // end bên admin
 
 Route::get('/home/product', [
@@ -170,12 +182,12 @@ Route::get('/home/cost',[
     'uses'=>'SearchController@getProductsCost'
 ]);
 
-Route::post('/home/add_cart',[
+Route::post('/cart/add',[
     'as'=>'add_cart',
     'uses'=>'CartController@postProducts'
 ]);
 
-Route::get('/home/cart',[
+Route::get('/cart',[
     'as'=>'cart',
     'uses'=>'CartController@getCart'
 ]);
@@ -188,3 +200,18 @@ Route::post('/home/checkout', [
     'as' => 'checkout',
     'uses' => 'PayController@postCheckout'
 ]);
+Route::get('/cart/remove',[
+    'as'=>'remove',
+    'uses'=>'CartController@removeCart'
+]);
+
+Route::get('/home/order',[
+    'as' => 'order_infor',
+    'uses' => 'PageController@getOrderInformation'
+]);
+
+Route::post('/home/cancel', [
+    'as' => 'cancel_order',
+    'uses' => 'PageController@postCancel'
+]);
+

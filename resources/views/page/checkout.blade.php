@@ -10,12 +10,24 @@
     <title>Checkout</title>
     <!-- Custom styles for this template -->
     <link href="{{('css/checkout.css')}}" rel="stylesheet">
+    <link href="{{('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
+    <script src="{{('js/jquery.min.js')}}"></script>
+
     {{-- <script type="text/javascript" src="{{('js/checkout.js')}}"></script> --}}
 </head>
 <body>
 <!-- Form Wrapper -->
 <form action="" method="post" id="form-wrapper">
     @csrf
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <div id="form-left-wrapper">
         <div id="form-tab-menu">
             <div class="tab-menu-item current shipping-tab">Shipping</div>
@@ -26,11 +38,11 @@
                 <div id="contact-details">
                     <div class='form-input input-small'>
                         <label>Full Name:</label><br/>
-                        <input type='text' name='firstname' placeholder='First Name' id='firstname-input' class='name-input' value="{{($address[0]->full_name)}}"/>
+                        <input type="text" name="full_name" placeholder='First Name' id='firstname-input' class='name-input' value="{{($address[0]->full_name)}}"/>
                     </div>
                     {{-- <div class='form-input input-small'>
                         <label>Last name</label><br/>
-                        <input type='text' name='lastname' placeholder='Last Name' id='lastname-input' class='name-input'/>
+                        <input type="text" name='lastname' placeholder='Last Name' id='lastname-input' class='name-input'/>
                     </div> --}}
                     {{-- <div class='form-input input-small'>
                         <label>E-mail</label><br/>
@@ -41,16 +53,16 @@
                 <div id="Address-details">
                     <div class='form-input input-small'>
                         <label>Phone</label><br/>
-                        <input type='number' name='company' placeholder='Contact Number' id='contact-input' class='number-input' value="{{($address[0]->phone)}}"/>
+                        <input type='number' name="phone" placeholder='Contact Number' id='contact-input' class='number-input' value="{{($address[0]->phone)}}"/>
                     </div>
                     <div class='form-input input-medium'>
                         <label>Street Address</label><br/>
-                        <input type='text' name='address' placeholder='Street Address' id='address-input' class='address-input' value="{{($address[0]->address_name)}}"/>
+                        <input type="text" name="address" placeholder='Street Address' id='address-input' class='address-input' value="{{($address[0]->address_name)}}"/>
                     </div>
                     <!-- Line Break -->
                     <div class='form-input input-small'>
                         <label>Country</label><br/>
-                        <input type='text' name='country' placeholder='Country' id='country-input' class='country-input'/>
+                        <input type="text" name="country" placeholder='Country' id='country-input' class='country-input'/>
                     </div>
                     <div class='form-input input-small'>
                         <label>City</label><br/>
@@ -58,12 +70,13 @@
                             <option selected>Chọn thành phố</option>
                             <option value="Hà Nội">Hà Nội</option>
                             <option value="Hồ Chí Minh">Hồ Chí Minh</option>
+                            <option value="Khác">Khác</option>
                         </select>
-                        {{-- <input type='text' name='city' placeholder='City' id='city-input' class='city-input' onchange="citySet()"/> --}}
+                        {{-- <input type="text" name='city' placeholder='City' id='city-input' class='city-input' onchange="citySet()"/> --}}
                     </div>
                     <div class='form-input input-small'>
                         <label>Note</label><br/>
-                        <input type='text' name='note' placeholder='Note' id='postcode-input' class='postcode-input'/>
+                        <input type="text" name="note" placeholder='Note' id='postcode-input' class='postcode-input'/>
                     </div>
                     <div class='hr' style='margin-bottom: 5px;'></div>
                     <div class='form-input-checkbox'>
@@ -80,7 +93,7 @@
     <div id="form-cart-menu">
         <input type="hidden" name="price" id="ship-input"value="0" />
         <input type="hidden" name="ship" id="price-input" value="{{($price_all)}}" />
-        <input type="hidden" name="total" id="total-input" value="0" />
+        <input type="hidden" name="total" id="total-input" value="{{($price_all)}}" />
 
         <div class="shopping-cart-head">
             <h1>Shopping Cart</h1>
@@ -105,13 +118,14 @@
             <tr class='shopping-cart-total'>
                 <td class='cart-total'>Total</td>
                 <td class='cart-price-total' id="total-class">
-                    0
+                    {{(number_format($price_all, 0, ',', '.'))}}
                 </td>
             </tr>
         </table>
     </div>
 </form>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="{{('js/bootstrap.min.js')}}"></script>
 <script type="text/javascript">
     let ADDRESS_HN = ['Hoàn Kiếm', 'Đống Đa', 'Ba Đình', 'Hai Bà Trưng',
     'Hoàng Mai', 'Thanh Xuân', 'Long Biên', 'Nam Từ Liêm',
@@ -136,10 +150,12 @@
             }
         } else if (city === 'Hồ Chí Minh') {
             if (checkcity(array, ADDRESS_HCM)){
-                ship = 70000;
+                ship = 20000;
             } else {
-                ship = 95000;
+                ship = 25000;
             }
+        } else if(city === 'Khác'){
+                ship = 30000;
         }
         if (ship !== 0) {
             total = (total + ship);
@@ -161,5 +177,6 @@
         }
     }
 </script>
+
 </body>
 </html>

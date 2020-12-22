@@ -10,6 +10,7 @@ use App\Carts;
 use App\Address;
 use App\Orders;
 use App\Order_Detail;
+use App\Products;
 
 class PayController extends Controller
 {
@@ -62,6 +63,25 @@ class PayController extends Controller
 
         $user_id = (int)$req->cookie('user_id');
 
+        $this->validate($req,
+        [
+            'full_name' => 'required',
+            'phone'=>'required',
+            'address'=>'required',
+            'country'=>'required',
+            'city'=>'required',
+            'note'=>'required',
+        ],
+        [
+            'full_name.required' => 'Vui lòng nhập tên',
+            'phone.required'=> 'Vui lòng nhập phone',
+            'address.required'=> 'Vui lòng nhập địa chỉ',
+            'country.required'=> 'Vui lòng nhập đất nước',
+            'city.required' => 'Vui lòng chọn thành phố',
+            'note.required' => 'Vui lòng nhập ghi chú',
+
+        ]);
+
         $address = Address::where('address_name', $req->address)->get();
 
         if (empty($address[0])) {
@@ -70,12 +90,17 @@ class PayController extends Controller
 
         $address = Address::select('id')->where('address_name', $req->address)->get();
 
-        $this->createOrder((int)$req->total, $req->note, $user_id, $address[0]->id);
+        if ($req->note !== null)
+            $this->createOrder((int)$req->total, $req->note, $user_id, $address[0]->id);
+        else
+            $this->createOrder((int)$req->total, "", $user_id, $address[0]->id);
         $order = Orders::select('id')
             ->where('user_id', $user_id)
             ->max('id');
-        // dd($order);
+
         $this->createO_D($order, $user_id);
+
+        $this->updateKho($user_id);
 
         Carts::where('user_id', $user_id)->delete();
 
@@ -122,5 +147,20 @@ class PayController extends Controller
 
             $order_detail->save();
         }
+    }
+
+    public function updateKho($user_id) {
+
+        $carts = Carts::select('unit_price', 'carts.amount', 'carts.product_id', 'product.amount as p_amount')
+            ->join('product', 'product.id', '=', 'carts.product_id')
+            ->where([
+                ['user_id', '=', $user_id]
+            ])
+            ->get();
+
+            foreach ($carts as $cart) {
+                Products::where('id', $cart->product_id)
+                ->update(['amount'=>$cart->p_amount - $cart->amount]);
+            }
     }
 }
