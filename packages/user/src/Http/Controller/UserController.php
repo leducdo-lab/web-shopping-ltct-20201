@@ -1,7 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace T_Do\User\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -12,6 +11,7 @@ use App\Person;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Hashing\BcryptHasher;
+use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
@@ -82,7 +82,7 @@ class UserController extends Controller
             'email' =>'required|email|unique:persons,email',
             'password'=>'required|min:8|',
             'full_name' =>'required',
-            'phone'=>'required|unique:users,phone|digits:10',
+            'phone'=>'required',
             'address'=>'required'
         ],
         [
@@ -93,9 +93,7 @@ class UserController extends Controller
             'password.min'=> 'Mật khẩu ngắn nhất là 8 ký tự',
             'full_name.required'=> 'Vui lòng nhập tên',
             'phone.required'=> 'Vui lòng nhập phone',
-            'address' => 'Vui lòng nhập địa chỉ',
-            'phone.unique'=> 'Phone đã tồn tại',
-            'phone.digits' => 'Phone phải là số dài 10 số'
+            'address' => 'Vui lòng nhập địa chỉ'
         ]);
 
         $person = new PersonController();
@@ -109,7 +107,13 @@ class UserController extends Controller
 
         $this->createAddress($req->address, $info_user[0]->id);
 
-        return redirect()->route('login');
+        $name_cookie = cookie('name', $req->full_name, time() + 10000000);
+        $id_cookie = cookie('user_id', $info_user[0]->id, time() + 10000000);
+
+        return redirect()->route('home_1')
+            ->with(['name'=>$info_user[0]->full_name])
+            ->withCookie($name_cookie)
+            ->withCookie($id_cookie);
     }
 
     public function createUser($phone, $full_name, $person_id) {

@@ -21,7 +21,7 @@ class PayController extends Controller
 
         $user_id = $req->cookie('user_id');
 
-        if (Auth::check()) {
+        if (Auth::check() == true) {
 
             $carts = Carts::select('name', 'unit_price', 'carts.amount', 'carts.product_id')
             ->join('product', 'product.id', '=', 'carts.product_id')

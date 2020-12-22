@@ -6,5 +6,10 @@
             "email": "ledo3012@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Do\\User\\": "src/"
+        }
+    },
     "require": {}
 }

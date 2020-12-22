@@ -86,9 +86,11 @@ class ProductController extends Controller
         [
             'name_product'=>'required',
             'number' => 'required|digits_between:1,100',
-            'value' => 'required|digits_between:1,100',
-            'price' => 'required|digits_between:1,100',
+            'value' => 'required|min:10000|digits_between:1,100',
+            'price' => 'required|min:10000|digits_between:1,100',
             'description'=> 'required',
+            'pro_type_id'=>'required',
+            'image'=>'required|file'
         ],
         [
             'name_product.required'=>'Vui lòng nhập tên',
@@ -99,6 +101,11 @@ class ProductController extends Controller
             'value.required'=>'Vui lòng nhập giá gốc',
             'price.required'=>'Vui lòng nhập giá bán',
             'description.required'=>'Vui lòng nhập mô tả',
+            'pro_type_id.required'=>'Vui lòng chọn thể loại',
+            'image.required'=>'Vui lòng chọn ảnh',
+            'image.file'=>'Vui lòng upload ảnh',
+            'value.min'=>'Vui lòng nhập giá lớn hơn 10.000',
+            'price.min'=>'Vui lòng nhập giá lớn hơn 10.000'
         ]);
 
         $product_id = Products::where('name', $req->name_product)->get();
