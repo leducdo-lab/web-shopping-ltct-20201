@@ -114,6 +114,7 @@
                                         <ul style="list-style-type: none;">
                                             <li><a href="{{(URL::to('/info'))}}">Thông tin</a></li>
                                             <li><a href="{{(URL::to('/change_password'))}}">Đổi mật khẩu</a></li>
+                                            <li><a href="{{(URL::to('/home/order'))}}">Đơn hàng</a></li>
                                             <li><a href="{{(URL::to('/logout'))}}">Đăng xuất</a></li>
                                         </ul>
                                 </div>
@@ -137,11 +138,9 @@
                         </ul>
                         <div class="cart box_1">
                             <a href="{{(route('cart'))}}">
-                            <h3> <div class="total">
-                                <span class="simpleCart_total"></span></div>
-                                <img src="{{(url('images/cart.png'))}}" alt=""/></h3>
+                            <h3>  <img src="{{(url('images/cart.png'))}}" alt=""/></h3>
                             </a>
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                            <p><a href="javascript:;" class="simpleCart_empty"></a></p>
 
                         </div>
                         <div class="clearfix"> </div>

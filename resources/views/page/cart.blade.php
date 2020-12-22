@@ -9,7 +9,7 @@
 </div>
 <!--login-->
 	<script>$(document).ready(function(c) {
-					$('.close1').on('click', function(c){
+					$('.remove').on('click', function(c){
 						$('.cart-header').fadeOut('slow', function(c){
 							$('.cart-header').remove();
 						});
@@ -33,6 +33,11 @@
 					});
 			   </script>
 <div class="check-out">
+    @if (Session::has('success'))
+            <div class="alert alert-{{ Session::get('success') }}">
+                {{( Session::get('message') )}}
+            </div>
+        @endif
 <div class="container">
 
 	<div class="bs-example4" data-example-id="simple-responsive-table">
@@ -52,10 +57,12 @@
 				<h5><a href="{{route('single','product_id='.$cart->product_id)}}">{{$cart->name}}</a></h5>
 			</div>
 			<div class="clearfix"> </div>
-			
+
 			<td>{{$cart->unit_price}}</td>
 			<td class="item_price">{{$cart->amount}}</td>
-			<div class="close1"> </div></td>
+			<td><a href="{{route('remove','product_id='.$cart->product_id)}}" class="remove">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a></td>
 		  </tr>
 		  @endforeach
 
@@ -63,7 +70,7 @@
 	</div>
 	</div>
 	<div class="produced">
-	<a href="single.html" class="hvr-skew-backward">Produced To Buy</a>
+	<a href="{{(route('checkout'))}}" class="hvr-skew-backward">Produced To Buy</a>
 	 </div>
 </div>
 </div>

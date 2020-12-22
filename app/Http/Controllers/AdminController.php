@@ -156,4 +156,36 @@ class AdminController extends Controller
         $admin->save();
     }
 
+    public function getOrderList() {
+        $orders = DB::table('orders')
+            ->select('orders.id', 'orders.status', 'orders.total', 'orders.note',
+            'users.full_name', 'users.phone', 'address.address_name', 'order_details.amount',
+            'product.name')
+            ->join('users', 'users.id', '=','orders.user_id')
+            ->join('address', 'address.id', '=', 'orders.address_id')
+            ->join('order_details', 'order_details.order_id', '=', 'orders.id')
+            ->join('product', 'product.id', '=', 'order_details.product_id')
+            ->orderByDesc('orders.id')
+            ->get();
+
+        return view('admin.list_order', [
+            'orders' => $orders
+        ]);
+    }
+
+    public function postOrder(Request $req) {
+
+        $id = $req->order_id;
+        $status = $req->status;
+
+        $order = Orders::find($id);
+
+        $order->status = $status;
+
+        $order->save();
+
+        return redirect()->back()->with(['success'=>'success', 'message'=>'Sửa thành công']);
+
+    }
+
 }

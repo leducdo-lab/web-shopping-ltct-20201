@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\Order_Detail;
+use App\Orders;
 use App\Products;
 use App\TestProvider\HelloRepository;
 
@@ -34,17 +35,19 @@ class PageController extends Controller
                             ->orderBy(DB::raw('COUNT(product_id)'),'desc')
                             ->get();
             $product = array();
+
         foreach ($trend as $t){
-            array_push($product,Products::select('name', 'unit_price', 'url', 'product.id')
+
+            array_push($product, Products::select('name', 'unit_price', 'url', 'product.id')
                                 ->join('image', 'image.product_id','=','product.id')
                                 ->where([
-                                    ['product.id', '=', $t],
+                                    ['product.id', '=', $t->product_id],
                                     ['image.main', '=', '1'],
                                 ])
                                 ->get()
-        );
+            );
         }
-    
+
         if(empty($cookie) == false)
             return view('page.home')->with(['name' => $cookie, 'trendings' => $product]);
         else
@@ -89,7 +92,7 @@ class PageController extends Controller
                     ->first();
 
                 $name_cookie = cookie('name', $_user->full_name, time() +$minutes);
-                $user_id_cookie = cookie('user_id', $_user->person_id, time() +$minutes);
+                $user_id_cookie = cookie('user_id', $_user->id, time() +$minutes);
                 return redirect()->route('info_user')
                     ->withCookie($name_cookie)
                     ->withCookie($user_id_cookie);
@@ -130,4 +133,48 @@ class PageController extends Controller
     public function getSingle(){
         return view('product.single');
     }
+
+    public function getOrderInformation(Request $req) {
+
+        $user_id = (int) $req->cookie('user_id');
+
+        $orders = DB::table('orders')->select('orders.id', 'product.name',
+        'address.address_name', 'orders.total',
+        'orders.status', 'order_details.amount')
+        ->join('address', 'orders.address_id', '=', 'address.id')
+        ->join('order_details', 'order_details.order_id', '=','orders.id')
+        ->join('product', 'product.id', '=', 'order_details.product_id')
+        ->where('orders.user_id', $user_id)
+        ->orderByDesc('orders.id')
+        ->get();
+
+        return view('page.order_infor', [
+            'orders' => $orders
+        ]);
+    }
+
+    public function postCancel(Request $req) {
+
+        $this->validate( $req,
+        [
+            'order_inducement' =>'required|alpha'
+        ],
+        [
+            'order_inducement.required' => 'vui lòng nhập lý do',
+            'order_inducement.alpha' => 'Vui lòng chỉ nhập chữ cái'
+        ]);
+
+        $order_id = (int) $req->order_id;
+        $reason = $req->order_inducement;
+
+        $order = Orders::find($order_id);
+
+        $order->status = -1;
+        $order->reason = $reason;
+
+        $order->save();
+
+        return redirect()->back()->with(['success'=>'success', 'message'=>'Huỷ thành công']);
+    }
+
 }
