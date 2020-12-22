@@ -9,7 +9,7 @@
 </div>
 <!--login-->
 	<script>$(document).ready(function(c) {
-					$('.close1').on('click', function(c){
+					$('.remove').on('click', function(c){
 						$('.cart-header').fadeOut('slow', function(c){
 							$('.cart-header').remove();
 						});
@@ -60,7 +60,9 @@
 
 			<td>{{$cart->unit_price}}</td>
 			<td class="item_price">{{$cart->amount}}</td>
-			<div class="close1"> </div></td>
+			<td><a href="{{route('remove','product_id='.$cart->product_id)}}" class="remove">
+                <span class="glyphicon glyphicon-remove"></span>
+              </a></td>
 		  </tr>
 		  @endforeach
 
