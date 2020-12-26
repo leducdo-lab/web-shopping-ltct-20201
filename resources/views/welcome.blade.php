@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Shopin A Ecommerce Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+        <title>Shopin</title>
         <base href="{{asset('')}}">
         <link href="{{('css/bootstrap.css')}}" rel="stylesheet" type="text/css" media="all" />
         <!-- Custom Theme files -->
@@ -26,7 +26,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         <!--- start-rate---->
         <script src="{{('js/jstarbox.js')}}"></script>
         <link rel="stylesheet" href="{{('css/jstarbox.css')}}" type="text/css" media="screen" charset="utf-8" />
-        <link href="css/form.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="{{('css/form.css')}}" rel="stylesheet" type="text/css" media="all" />
         <script type="text/javascript">
             jQuery(function() {
                 jQuery('.starbox').each(function() {
@@ -49,6 +49,50 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             });
         </script>
         <!---//End-rate---->
+
+        <style>
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1;
+                padding-top: 300px;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0, 0, 0);
+                background-color: rgba(0, 0, 0, .4);
+                }
+
+            .modal-content {
+                background-color: #fefefe;
+                margin: auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 50%;
+            }
+
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            #popup {
+                width: 80%;
+                height: 100%;
+            }
+        </style>
+
     </head>
 <body>
 <!--header-->

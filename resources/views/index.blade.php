@@ -9,21 +9,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <base href="{{asset('')}}">
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link href="{{('css/bootstrap.css')}}" rel='stylesheet' type='text/css' />
     <!-- Custom CSS -->
-    <link href="css/style1.css" rel='stylesheet' type='text/css' />
+    <link href="{{('css/style1.css')}}" rel='stylesheet' type='text/css' />
     <!-- Graph CSS -->
-    <link href="css/font-awesome1.css" rel="stylesheet">
+    <link href="{{('css/font-awesome1.css')}}" rel="stylesheet">
     <!-- jQuery -->
     <!-- lined-icons -->
-    <link rel="stylesheet" href="css/icon-font.min1.css" type='text/css' />
+    <link rel="stylesheet" href="{{('css/icon-font.min1.css')}}" type='text/css' />
     <!-- //lined-icons -->
     <!-- chart -->
-    <script src="js/Chart.js"></script>
+    <script src="{{('js/Chart.js')}}"></script>
     <!-- //chart -->
     <!--animate-->
-    <link href="css/animate1.css" rel="stylesheet" type="text/css" media="all">
-    <script src="js/wow.min.js"></script>
+    <link href="{{('css/animate1.css')}}" rel="stylesheet" type="text/css" media="all">
+    <script src="{{('js/wow.min.js')}}"></script>
     <script>
         new WOW().init();
     </script>
@@ -32,8 +32,51 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link href='//fonts.googleapis.com/css?family=Cabin:400,400italic,500,500italic,600,600italic,700,700italic' rel='stylesheet' type='text/css'>
     <!---//webfonts--->
     <!-- Meters graphs -->
-    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="{{('js/jquery-1.10.2.min.js')}}"></script>
     <!-- Placed js at the end of the document so the pages load faster -->
+
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 300px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, .4);
+            }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 50%;
+        }
+
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #popup {
+            width: 80%;
+            height: 100%;
+        }
+    </style>
 
 </head>
 
@@ -61,6 +104,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li><a href="{{(route('list_user'))}}">Danh sách người dùng</a> </li>
                         <li><a href="{{(route('list_admin'))}}">Danh sách admin</a> </li>
                         <li><a href="{{(route('list_product'))}}">Danh sách sản phẩm</a></li>
+                        <li><a href="{{(route('list_order'))}}">Danh sách đơn hàng</a></li>
                     </ul>
                 </li>
                 @if (Cookie::get('main_admin') == true)
@@ -89,9 +133,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- main content end-->
 </section>
 
-<script src="js/jquery.nicescroll.js"></script>
-<script src="js/scripts.js"></script>
+<script src="{{('js/jquery.nicescroll.js')}}"></script>
+<script src="{{('js/scripts.js')}}"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
+<script src="{{('js/bootstrap.min.js')}}"></script>
 </body>
 </html>

@@ -86,9 +86,11 @@ class ProductController extends Controller
         [
             'name_product'=>'required',
             'number' => 'required|digits_between:1,100',
-            'value' => 'required|digits_between:1,100',
-            'price' => 'required|digits_between:1,100',
+            'value' => 'required|min:10000|digits_between:1,100',
+            'price' => 'required|min:10000|digits_between:1,100',
             'description'=> 'required',
+            'pro_type_id'=>'required',
+            'image'=>'required|file'
         ],
         [
             'name_product.required'=>'Vui lòng nhập tên',
@@ -99,6 +101,11 @@ class ProductController extends Controller
             'value.required'=>'Vui lòng nhập giá gốc',
             'price.required'=>'Vui lòng nhập giá bán',
             'description.required'=>'Vui lòng nhập mô tả',
+            'pro_type_id.required'=>'Vui lòng chọn thể loại',
+            'image.required'=>'Vui lòng chọn ảnh',
+            'image.file'=>'Vui lòng upload ảnh',
+            'value.min'=>'Vui lòng nhập giá lớn hơn 10.000',
+            'price.min'=>'Vui lòng nhập giá lớn hơn 10.000'
         ]);
 
         $product_id = Products::where('name', $req->name_product)->get();
@@ -167,7 +174,7 @@ class ProductController extends Controller
 
         $image->url = $url;
         $image->product_id = $product_id;
-
+        $image->main = true;
         $image->save();
     }
 
@@ -209,50 +216,4 @@ class ProductController extends Controller
         }
     }
 
-    public function getProduct(){
-        $product_id = 1;
-        $product = Products::find($product_id);
-        $image = Images::select('id', 'url')
-                ->where('product_id', $product_id)
-                ->get();
-        $accessories = Accessories_PK::select('name', 'price')
-                                ->join('product_accesso', 'accessories.id', '=','product_accesso.accessories_id' )
-                                ->where('product_id', $product_id)
-                                ->get();
-        return view('product.single',
-        [
-            'product' => $product,
-            'images' => $image,
-            'accessories' => $accessories
-        ]);
-    }
-
-    public function getTrending(){
-        $trend = Order_Detail::select('product_id')
-                            ->groupBy('product_id')
-                            ->limit(8)
-                            ->orderBy(DB::raw('COUNT(product_id)'),'desc')
-                            ->get();
-            $product = array();
-        foreach ($trend as $t){
-            array_push($product,Products::select('name', 'unit_price', 'url', 'product.id')
-                                ->join('image', 'image.product_id','=','product.id')
-                                ->where('product.id', '=', $t)
-                                ->get()
-        );
-        }
-        return view('page.home',
-        [
-            'trending' => $product
-        ]);
-    }
-    public function getAllProduct(){
-        $product = Products::select('name', 'unit_price', 'url', 'product.id')
-                            ->leftJoin('image', 'image.product_id','=','product.id')
-                            ->get();
-        return view('product.product',
-        [
-            'products' => $product
-        ]);
-    }
 }

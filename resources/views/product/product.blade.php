@@ -19,14 +19,14 @@
                             <div class="pro-img">
                                 <img src="images/{{$product->url}}" class="img-responsive" alt="">
                                 <div class="zoom-icon ">
-                                    <a class="picture" href="{{route('single')}}" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
-                                    <a href="{{route('single')}}"><i class="glyphicon glyphicon-menu-right icon"></i></a>
+                                    <a class="picture" href="{{route('single','product_id='.$product->id)}}" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
+                                    <a href="{{route('single', 'product_id='.$product->id)}}"><i class="glyphicon glyphicon-menu-right icon"></i></a>
                                 </div>
                             </div>
                             <div class="mid-1">
                                 <div class="women">
                                     <div class="women-top">
-                                        <h6><a href="{{route('single')}}">{{$product->name}}</a></h6>
+                                        <h6><a href="{{route('single', 'product_id='.$product->id)}}">{{$product->name}}</a></h6>
                                     </div>
                                     <div class="img item_add">
                                         <a href="#"><img src="images/ca.png" alt=""></a>
@@ -80,13 +80,13 @@
                     <h4 class="cate">Discounts</h4>
                     <div class="row row1 scroll-pane">
                         <div class="col col-4">
-                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i> < 100.000(20)</label>
+                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i> <a href="{{route('cost','cost=1')}}"> < 100.000 </a></label>
                         </div>
                         <div class="col col-4">
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>100.000 - 300.000(5)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>300.000 - 500.000 (7)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>500.000 - 1.000.000 (2)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>> 1.000.000 (50)</label>
+                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i><a href="{{route('cost','cost=2')}}"> 100.000 - 300.000 </a></label>
+                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i><a href="{{route('cost','cost=3')}}"> 300.000 - 500.000 </a></label>
+                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i><a href="{{route('cost','cost=4')}}"> 500.000 - 1.000.000 </a></label>
+                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i><a href="{{route('cost','cost=5')}}"> > 1.000.000 </a></label>
                         </div>
                     </div>
                 </section>
@@ -97,20 +97,12 @@
                     <h4 class="cate">Type</h4>
                     <div class="row row1 scroll-pane">
                         <div class="col col-4">
-                            <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Áo (30)</label>
-                        </div>
-                        <div class="col col-4">
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Áo khoác (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Áo nỉ  (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Áo phông  (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Quần jeans (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Chân váy  (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Quần Sooc  (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Quần Âu  (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Váy công sở  (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Váy ngủ  (30)</label>
-                            <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Váy hoa (30)</label>
-                        </div>
+                            @if(!empty($types))
+                            @foreach($types as $type)
+                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i><a href="{{route('type','type='.$type->id)}}">{{$type->name}} </a>({{$type->count}})</label>
+                            @endforeach
+                            @endif
+                            </div>
                     </div>
                 </section>
             </div>

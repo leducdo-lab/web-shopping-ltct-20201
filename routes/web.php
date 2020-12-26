@@ -11,10 +11,14 @@
 |
 */
 
+Route::get('/test_provider', [
+    'as'=> 'test_provider',
+    'uses'=> 'PageController@index'
+]);
+
 Route::get('/', [
     'as' => 'home',
-    'uses' => 'PageController@getIndex',
-    'uses' => 'ProductController@getTrending'
+    'uses' => 'PageController@getIndex'
 ]);
 
 Route::get('/home', [
@@ -45,6 +49,11 @@ Route::get('/change_password', [
 Route::post('/change_password',[
     'as'=> 'change_password',
     'uses' => 'UserController@postChangePassWord'
+]);
+
+Route::get('/cart', [
+    'as'=> 'cart',
+    'uses' => 'PageController@getCart'
 ]);
 
 // Đăng ký người dùng
@@ -134,17 +143,76 @@ Route::get('/admin/remove', [
     'as'=>'remove_admin',
     'uses'=>'AdminController@getRemoveAdmin'
 ]);
+
+Route::get('/admin/order',[
+    'as'=>'list_order',
+    'uses'=>'AdminController@getOrderList'
+]);
+
+
+Route::post('/admin/order',[
+    'as'=>'list_order',
+    'uses'=>'AdminController@postOrder'
+]);
+
 // end bên admin
 
 Route::get('/home/product', [
     'as'=>'product',
-    'uses'=>'ProductController@getAllProduct'
+    'uses'=>'SearchController@getAllProduct'
 ]);
 
 Route::get('/home/single', [
     'as'=>'single',
-    'uses'=>'ProductController@getProduct'
+    'uses'=>'SearchController@getProduct'
 ]);
 
+Route::post('/home/search', [
+    'as'=>'search',
+    'uses'=>'SearchController@postSearch'
+]);
+
+Route::get('/home/type',[
+    'as'=>'type',
+    'uses'=>'SearchController@getProductsType'
+]);
+
+Route::get('/home/cost',[
+    'as'=>'cost',
+    'uses'=>'SearchController@getProductsCost'
+]);
+
+Route::post('/cart/add',[
+    'as'=>'add_cart',
+    'uses'=>'CartController@postProducts'
+]);
+
+Route::get('/cart',[
+    'as'=>'cart',
+    'uses'=>'CartController@getCart'
+]);
+
+Route::get('/home/checkout', [
+    'as' => 'checkout',
+    'uses' => 'PayController@getCheckout'
+]);
+Route::post('/home/checkout', [
+    'as' => 'checkout',
+    'uses' => 'PayController@postCheckout'
+]);
+Route::get('/cart/remove',[
+    'as'=>'remove',
+    'uses'=>'CartController@removeCart'
+]);
+
+Route::get('/home/order',[
+    'as' => 'order_infor',
+    'uses' => 'PageController@getOrderInformation'
+]);
+
+Route::post('/home/cancel', [
+    'as' => 'cancel_order',
+    'uses' => 'PageController@postCancel'
+]);
 
 

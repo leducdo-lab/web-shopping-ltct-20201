@@ -52,6 +52,7 @@
         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
             <ul class="nav navbar-nav nav_1">
                 <li><a class="color" href="{{(URL::to('/home'))}}">Home</a></li>
+                <li><a class="color" href="{{ route('product') }}">All product</a></li>
 
                 <li class="dropdown mega-dropdown active">
                     <a class="color1" href="#" class="dropdown-toggle" data-toggle="dropdown">Women<span class="caret"></span></a>
@@ -59,38 +60,44 @@
                         <div class="menu-top">
                             <div class="col1">
                                 <div class="h_nav">
-                                    <h4>Áo</h4>
-                                        <ul>
-                                            <li><a href="{{ route('product') }}">Áo len</a></li>
-                                            <li><a href="{{ route('product') }}">Áo khoác</a></li>
-                                            <li><a href="{{ route('product') }}">Áo nỉ</a></li>
-                                            <li><a href="{{ route('product') }}">Áo phông</a></li>
 
+                                        <ul>
+                                            @if (!empty($types))
+                                            @for ($i=0 ; $i<=5 ; $i++ )
+                                            <li><a href="{{ route('type','type='.$types[$i]->id) }}">{{$types[$i]->name}}</a></li>
+                                                @if(count($types) < $i + 2) @break; @endif
+                                            @endfor
+                                            @endif
                                         </ul>
                                 </div>
                             </div>
                             <div class="col1">
                                 <div class="h_nav">
-                                    <h4>Quần</h4>
                                     <ul>
-                                            <li><a href="{{ route('product') }}">Quần Jeans</a></li>
-                                            <li><a href="{{ route('product') }}">Chân váy</a></li>
-                                            <li><a href="{{ route('product') }}">Quần Sooc</a></li>
-                                            <li><a href="{{ route('product') }}">Quần âu</a></li>
+                                            @if (!empty($types))
+                                            @for ($i=6 ; $i<=10 ; $i++ )
+                                            @if(count($types) < $i + 2) @break; @endif
+                                            <li><a href="{{ route('type','type='.$types[$i]->id) }}">{{$types[$i]->name}}</a></li>
+
+                                            @endfor
+                                            @endif
                                         </ul>
                                 </div>
                             </div>
                             <div class="col1">
                                 <div class="h_nav">
-                                    <h4>Váy</h4>
-                                        <ul>
-                                            <li><a href="{{ route('product') }}">Váy công sở</a></li>
-                                            <li><a href="{{ route('product') }}">Váy ngủ</a></li>
-                                            <li><a href="{{ route('product') }}">Váy hoa</a></li>
-                                        </ul>
+                                    <ul>
+                                            @if (!empty($types))
+                                            @for ($i=11 ; $i<=15 ; $i++ )
+                                            @if(count($types) < $i + 2) @break; @endif
+                                            <li><a href="{{ route('type','type='.$types[$i]->id) }}">{{$types[$i]->name}}</a></li>
 
+                                            @endfor
+                                            @endif
+                                        </ul>
                                 </div>
                             </div>
+
                             <div class="col1 col5">
                             <img src="images/me.png" class="img-responsive" alt="">
                             </div>
@@ -98,73 +105,6 @@
                         </div>
                     </div>
                 </li>
-{{--                <li class="dropdown mega-dropdown active">--}}
-{{--                    <a class="color2" href="#" class="dropdown-toggle" data-toggle="dropdown">Men<span class="caret"></span></a>--}}
-{{--                    <div class="dropdown-menu mega-dropdown-menu">--}}
-{{--                        <div class="menu-top">--}}
-{{--                            <div class="col1">--}}
-{{--                                <div class="h_nav">--}}
-{{--                                    <h4>Submenu1</h4>--}}
-{{--                                        <ul>--}}
-{{--                                            <li><a href="product.html">Accessories</a></li>--}}
-{{--                                            <li><a href="product.html">Bags</a></li>--}}
-{{--                                            <li><a href="product.html">Caps & Hats</a></li>--}}
-{{--                                            <li><a href="product.html">Hoodies & Sweatshirts</a></li>--}}
-
-{{--                                        </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col1">--}}
-{{--                                <div class="h_nav">--}}
-{{--                                    <h4>Submenu2</h4>--}}
-{{--                                    <ul>--}}
-{{--                                            <li><a href="product.html">Jackets & Coats</a></li>--}}
-{{--                                            <li><a href="product.html">Jeans</a></li>--}}
-{{--                                            <li><a href="product.html">Jewellery</a></li>--}}
-{{--                                            <li><a href="product.html">Jumpers & Cardigans</a></li>--}}
-{{--                                            <li><a href="product.html">Leather Jackets</a></li>--}}
-{{--                                            <li><a href="product.html">Long Sleeve T-Shirts</a></li>--}}
-{{--                                        </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col1">--}}
-{{--                                <div class="h_nav">--}}
-{{--                                    <h4>Submenu3</h4>--}}
-
-{{--                                        <ul>--}}
-{{--                                            <li><a href="product.html">Shirts</a></li>--}}
-{{--                                            <li><a href="product.html">Shoes, Boots & Trainers</a></li>--}}
-{{--                                            <li><a href="product.html">Sunglasses</a></li>--}}
-{{--                                            <li><a href="product.html">Sweatpants</a></li>--}}
-{{--                                            <li><a href="product.html">Swimwear</a></li>--}}
-{{--                                            <li><a href="product.html">Trousers & Chinos</a></li>--}}
-
-{{--                                        </ul>--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col1">--}}
-{{--                                <div class="h_nav">--}}
-{{--                                    <h4>Submenu4</h4>--}}
-{{--                                    <ul>--}}
-{{--                                        <li><a href="product.html">T-Shirts</a></li>--}}
-{{--                                        <li><a href="product.html">Underwear & Socks</a></li>--}}
-{{--                                        <li><a href="product.html">Vests</a></li>--}}
-{{--                                        <li><a href="product.html">Jackets & Coats</a></li>--}}
-{{--                                        <li><a href="product.html">Jeans</a></li>--}}
-{{--                                        <li><a href="product.html">Jewellery</a></li>--}}
-{{--                                    </ul>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="col1 col5">--}}
-{{--                                <img src="images/me1.png" class="img-responsive" alt="">--}}
-{{--                            </div>--}}
-{{--                            <div class="clearfix"></div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-{{--                <li><a class="color4" href="404.html">About</a></li>--}}
-{{--                <li ><a class="color6" href="contact.html">Contact</a></li>--}}
                 <!-- Thông tin người dùng. -->
                 @if(!empty(Cookie::get('name')))
                     <li class="dropdown mega-dropdown active">
@@ -174,6 +114,7 @@
                                         <ul style="list-style-type: none;">
                                             <li><a href="{{(URL::to('/info'))}}">Thông tin</a></li>
                                             <li><a href="{{(URL::to('/change_password'))}}">Đổi mật khẩu</a></li>
+                                            <li><a href="{{(URL::to('/home/order'))}}">Đơn hàng</a></li>
                                             <li><a href="{{(URL::to('/logout'))}}">Đăng xuất</a></li>
                                         </ul>
                                 </div>
@@ -196,12 +137,10 @@
                     <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog"><i class="glyphicon glyphicon-search"> </i></a></li>
                         </ul>
                         <div class="cart box_1">
-                            <a href="checkout.html">
-                            <h3> <div class="total">
-                                <span class="simpleCart_total"></span></div>
-                                <img src="images/cart.png" alt=""/></h3>
+                            <a href="{{(route('cart'))}}">
+                            <h3>  <img src="{{(url('images/cart.png'))}}" alt=""/></h3>
                             </a>
-                            <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+                            <p><a href="javascript:;" class="simpleCart_empty"></a></p>
 
                         </div>
                         <div class="clearfix"> </div>
@@ -215,8 +154,11 @@
                 <div id="small-dialog" class="mfp-hide">
                     <div class="search-top">
                         <div class="login-search">
-                            <input type="submit" value="">
-                            <input type="text" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}">
+                            <form action="{{(route('search'))}}" method="post" class="form-horizontal">
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <input type="submit" value="">
+                                <input type="text" name="name" value="Search.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search..';}">
+                            </form>
                         </div>
                         <p>Shopin</p>
                     </div>
