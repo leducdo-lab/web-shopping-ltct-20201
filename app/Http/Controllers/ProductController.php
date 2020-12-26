@@ -252,7 +252,7 @@ class ProductController extends Controller
                             ->get();
         return view('product.product',
         [
-            'products' => $product 
+            'products' => $product
         ]);
     }
 }
