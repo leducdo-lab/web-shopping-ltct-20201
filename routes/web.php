@@ -215,3 +215,4 @@ Route::post('/home/cancel', [
     'uses' => 'PageController@postCancel'
 ]);
 
+

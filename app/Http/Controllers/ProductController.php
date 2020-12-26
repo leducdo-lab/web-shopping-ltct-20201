@@ -215,4 +215,5 @@ class ProductController extends Controller
             $pk_prod->save();
         }
     }
+
 }
