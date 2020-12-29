@@ -1,0 +1,15 @@
+{
+    "name": "thao/admin",
+    "authors": [
+        {
+            "name": "Hong Thao",
+            "email": "Hongthao2491999@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "HT\\Admin\\": "src/"
+        }
+    },
+    "require": {}
+}

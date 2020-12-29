@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "836b35b379f1cee3b41546ec041900d2",
+    "content-hash": "da43732f70254626a35858e5447106a9",
     "packages": [
         {
             "name": "composer/package-versions-deprecated",
@@ -59,10 +59,6 @@
                 }
             ],
             "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "support": {
-                "issues": "https://github.com/composer/package-versions-deprecated/issues",
-                "source": "https://github.com/composer/package-versions-deprecated/tree/1.11.99.1"
-            },
             "funding": [
                 {
                     "url": "https://packagist.com",
@@ -192,10 +188,6 @@
                 "redis",
                 "xcache"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/cache/issues",
-                "source": "https://github.com/doctrine/cache/tree/1.10.x"
-            },
             "funding": [
                 {
                     "url": "https://www.doctrine-project.org/sponsorship.html",
@@ -303,10 +295,6 @@
                 "sqlserver",
                 "sqlsrv"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/dbal/issues",
-                "source": "https://github.com/doctrine/dbal/tree/3.0.0"
-            },
             "funding": [
                 {
                     "url": "https://www.doctrine-project.org/sponsorship.html",
@@ -397,10 +385,6 @@
                 "event system",
                 "events"
             ],
-            "support": {
-                "issues": "https://github.com/doctrine/event-manager/issues",
-                "source": "https://github.com/doctrine/event-manager/tree/1.1.x"
-            },
             "funding": [
                 {
                     "url": "https://www.doctrine-project.org/sponsorship.html",
@@ -1211,6 +1195,78 @@
                 }
             ],
             "time": "2020-10-18T11:50:25+00:00"
+        },
+        {
+            "name": "leducdo/product",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leducdo-lab/package-product.git",
+                "reference": "9dcee274195854847b34a80ea9ab6857d0e9b407"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leducdo-lab/package-product/zipball/9dcee274195854847b34a80ea9ab6857d0e9b407",
+                "reference": "9dcee274195854847b34a80ea9ab6857d0e9b407",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TDP\\Product\\ProductServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TDP\\Product\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Do Le",
+                    "email": "ledo3012@gmail.com"
+                }
+            ],
+            "time": "2020-12-28T03:24:31+00:00"
+        },
+        {
+            "name": "leducdo/user",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/leducdo-lab/user_package.git",
+                "reference": "9501384d3247252fca792d927b82a21ae3db92e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/leducdo-lab/user_package/zipball/9501384d3247252fca792d927b82a21ae3db92e5",
+                "reference": "9501384d3247252fca792d927b82a21ae3db92e5",
+                "shasum": ""
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TDP\\User\\UserServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TDP\\User\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Do Le",
+                    "email": "ledo3012@gmail.com"
+                }
+            ],
+            "time": "2020-12-28T14:59:32+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6521,12 +6577,15 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "leducdo/product": 20,
+        "leducdo/user": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.2.5|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "1.1.0"
 }

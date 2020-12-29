@@ -178,7 +178,10 @@ return [
         /*
         * Test Service Providers...
         */
-        App\Providers\TestServiceProvider::class
+        App\Providers\TestServiceProvider::class,
+        // TDP\User\UserServiceProvider::class
+        // TDP\Product\ProductServiceProvider::class
+        HT\Admin\AdminServiceProvider::class
 
     ],
 
