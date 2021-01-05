@@ -1,48 +1,36 @@
 <?php
 
-namespace HT\Admin\Http\Controller;
+namespace HongThao\Admin\Http\Controller;
 
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 use App\Http\Controllers\Controller;
 
-use App\Admin;
-use App\Person;
-use App\Products;
-use App\Orders;
+use HongThao\Admin\Models\Admin;
+use HongThao\Admin\Models\Person;
+use HongThao\Admin\Models\Products;
+use HongThao\Admin\Models\Orders;
 
 
 class AdminController extends Controller
 {
 
-    public function getIndex() {
+    protected Admin $admin;
+    protected Person $person;
+    protected Products $product;
+    protected Orders $order;
 
-        $persons = Person::all()->count();
-        $products = Products::all()->count();
-        $orders = Orders::all()->count();
-
-        if(Auth::check()) {
-            return view('admin.dashboard')
-            ->with(
-                [
-                    'products' => $products,
-                    'orders' => $orders,
-                    'persons' => $persons
-                ]);
-        }else {
-            return view('admin.dashboard')
-            ->with(
-                [
-                    'products' => $products,
-                    'orders' => $orders,
-                    'persons' => $persons
-                ]);
-        }
-
+    public function __construct(Admin $admin, Person $person,
+                                 Products $product, Orders $order)
+    {
+        $this->person = $person;
+        $this->product = $product;
+        $this->adminn = $admin;
+        $this->order = $order;
     }
 
     public function createPerson($email, $password, $is_admin) {
@@ -58,6 +46,32 @@ class AdminController extends Controller
         return $id[0]->id;
     }
 
+    public function getIndex() {
+
+        $persons = Person::all()->count();
+        $products = Products::all()->count();
+        $orders = Orders::all()->count();
+
+        if(Auth::check()) {
+            return view('admins::page.dashboard')
+            ->with(
+                [
+                    'products' => $products,
+                    'orders' => $orders,
+                    'persons' => $persons
+                ]);
+        }else {
+            return view('admins::page.dashboard')
+            ->with(
+                [
+                    'products' => $products,
+                    'orders' => $orders,
+                    'persons' => $persons
+                ]);
+        }
+
+    }
+
     public function logoutAdmin(Request $req) {
         if (Cookie::has('email') && Cookie::has('main_admin')) {
             Cookie::forget('email');
@@ -69,36 +83,41 @@ class AdminController extends Controller
     }
 
     public function getListProduct() {
-        $products = Products::paginate(20);
-        return view('admin.list_product', ['products' => $products]);
+        $products = Products::paginate(10);
+        $products->setPath('list_product/url');
+        return view('admins::page.list_product', ['products' => $products]);
     }
 
     public function getUser() {
         $users = DB::table('users')
                     ->join('persons', 'users.person_id','=', 'persons.id')
-                    ->paginate(15);
+                    ->paginate(20);
 
-        return view('admin.list_user', ['users' => $users]);
+        $users->withPath('list_user/url');
+
+        return view('admins::page.list_user', ['users' => $users]);
     }
 
     public function getListAdmin()
     {
         $admins = DB::table('persons')->join('admins', 'admins.person_id', '=', 'persons.id')
-                    ->paginate(15);
+                    ->paginate(20);
+
+        $admins->withPath('list_user/admin');
 
         $data['main'] = 'Quản lý chính';
         $data['non_main'] = 'Quản lý phụ';
 
-        return view('admin.list_admin', [
+        return view('admins::page.list_admin', [
             'admins' => $admins,
             'data'=> $data,
             ]);
     }
 
-// Giúp việc đăng ký admin.
+// Giúp việc đăng ký admins::page.
     public function getSignUp()
     {
-        return view('admin.sign_up');
+        return view('admins::page.sign_up');
     }
 
     public function postSignup(Request $req) {
@@ -134,7 +153,7 @@ class AdminController extends Controller
 
     }
 
-// lấy trang edit admin.
+// lấy trang edit admins::page.
     public function getEditAdmin(Request $req) {
 
         $admin_id = $req->input('admin');
@@ -177,7 +196,7 @@ class AdminController extends Controller
             ->orderByDesc('orders.id')
             ->get();
 
-        return view('admin.list_order', [
+        return view('admins::page.list_order', [
             'orders' => $orders
         ]);
     }

@@ -1,0 +1,22 @@
+{
+    "name": "phuong/order",
+    "authors": [
+        {
+            "name": "Phuong",
+            "email": "phuong.ntt176848@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Phuong\\Order\\": "src/"
+        }
+    },
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Phuong\\Order\\OrderServiceProvider"
+            ]
+        }
+    }
+}

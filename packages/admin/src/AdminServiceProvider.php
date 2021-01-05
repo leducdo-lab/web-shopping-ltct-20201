@@ -1,31 +1,26 @@
 <?php
 
-namespace HT\Admin;
+namespace HongThao\Admin;
 
 use Illuminate\Support\ServiceProvider;
 
-class AdminServiceProvider extends ServiceProvider
+class AdminServiceProvider extends ServiceProvider 
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
+
     public function register()
     {
-        //
+        
     }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
     public function boot()
     {
-        //
+        $this->loadRoutesFrom(__DIR__."/routes/web.php");
+        $this->loadViewsFrom(__DIR__."/views", "admins");
 
-        $this->loadRoutesFrom(__DIR__ ."/routes/web.php");
-
+        $this->publishes([
+            __DIR__."/public/" => public_path("admins")
+        ],"public_admins");
     }
+
+
 }
