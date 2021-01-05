@@ -11,6 +11,6 @@ class User extends Model
     public $timestamps = false;
 
     public function Address() {
-        return $this->hasMany('App\Models\Address', 'user_id', 'local_key');
+        return $this->hasMany('App\Address', 'user_id', 'local_key');
     }
 }

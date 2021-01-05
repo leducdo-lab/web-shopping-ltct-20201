@@ -1,0 +1,22 @@
+{
+    "name": "thao/admin",
+    "authors": [
+        {
+            "name": "HongThao",
+            "email": "Hongthao2491999@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "HongThao\\Admin\\": "src/"          
+        }
+    },
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HongThao\\Admin\\AdminServiceProvider"
+            ]
+        }    
+    }
+}

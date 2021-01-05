@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/test_provider', [
     'as'=> 'test_provider',
     'uses'=> 'PageController@index'
@@ -26,51 +28,51 @@ Route::get('/home', [
     'uses' => 'PageController@getIndex'
 ]);
 
-Route::get('/login', [
-    'as'=> 'login',
-    'uses' => 'PageController@getLogin'
-]);
+// Route::get('/login', [
+//     'as'=> 'login',
+//     'uses' => 'UserController@getLogin'
+// ]);
 
-Route::post('/login', [
-    'as'=> 'login',
-    'uses' => 'PageController@postLogin'
-]);
+// Route::post('/login', [
+//     'as'=> 'login',
+//     'uses' => 'UserController@postLogin'
+// ]);
 
-Route::get('/info', [
-    'as'=> 'info_user',
-    'uses' => 'UserController@getInfo_User'
-]);
+// Route::get('/info', [
+//     'as'=> 'info_user',
+//     'uses' => 'UserController@getInfo_User'
+// ]);
 
-Route::get('/change_password', [
-    'as'=> 'change_password',
-    'uses' => 'UserController@ChangePassWord'
-]);
+// Route::get('/change_password', [
+//     'as'=> 'change_password',
+//     'uses' => 'UserController@ChangePassWord'
+// ]);
 
-Route::post('/change_password',[
-    'as'=> 'change_password',
-    'uses' => 'UserController@postChangePassWord'
-]);
+// Route::post('/change_password',[
+//     'as'=> 'change_password',
+//     'uses' => 'UserController@postChangePassWord'
+// ]);
 
-Route::get('/cart', [
-    'as'=> 'cart',
-    'uses' => 'PageController@getCart'
-]);
+// Route::get('/cart', [
+//     'as'=> 'cart',
+//     'uses' => 'PageController@getCart'
+// ]);
 
 // Đăng ký người dùng
-Route::get('/register', [
-    'as'=> 'register',
-    'uses' => 'UserController@getRegister_User'
-]);
-// end đăng ký người dùng
-Route::post('/register', [
-    'as'=> 'register',
-    'uses' => 'UserController@postRegister_User'
-]);
+// Route::get('/register', [
+//     'as'=> 'register',
+//     'uses' => 'UserController@getRegister_User'
+// ]);
+// // end đăng ký người dùng
+// Route::post('/register', [
+//     'as'=> 'register',
+//     'uses' => 'UserController@postRegister_User'
+// ]);
 
-Route::get('/logout', [
-    'as'=> 'logout',
-    'uses' => 'PageController@getLogout'
-]);
+// Route::get('/logout', [
+//     'as'=> 'logout',
+//     'uses' => 'PageController@getLogout'
+// ]);
 
 // Xử lý bên admin.
 
@@ -79,108 +81,108 @@ Route::get('/admin/dashboard', [
     'uses'=>'AdminController@getIndex'
 ]);
 
-Route::get('/admin/logout', [
-    'as'=>'logout_admin',
-    'uses'=> 'AdminController@logoutAdmin'
-]);
+// Route::get('/admin/logout', [
+//     'as'=>'logout_admin',
+//     'uses'=> 'AdminController@logoutAdmin'
+// ]);
 
-Route::get('/admin/list_product', [
-    'as'=>'list_product',
-    'uses'=>'AdminController@getListProduct'
-]);
+// Route::get('/admin/list_product', [
+//     'as'=>'list_product',
+//     'uses'=>'AdminController@getListProduct'
+// ]);
 
-Route::get('/admin/remove_product', [
-    'as'=>'remove_product',
-    'uses'=>'ProductController@getRemoveProduct'
-]);
+// Route::get('/admin/remove_product', [
+//     'as'=>'remove_product',
+//     'uses'=>'ProductController@getRemoveProduct'
+// ]);
 
-Route::get('/admin/list_user', [
-    'as'=>'list_user',
-    'uses'=>'AdminController@getUser'
-]);
+// Route::get('/admin/list_user', [
+//     'as'=>'list_user',
+//     'uses'=>'AdminController@getUser'
+// ]);
 
-Route::get('/admin/add_product', [
-    'as'=>'add_product',
-    'uses'=>'ProductController@getAddProduct'
-]);
+// Route::get('/admin/add_product', [
+//     'as'=>'add_product',
+//     'uses'=>'ProductController@getAddProduct'
+// ]);
 
-Route::post('/admin/add_product', [
-    'as'=>'add_product',
-    'uses'=>'ProductController@postAddProduct'
-]);
+// Route::post('/admin/add_product', [
+//     'as'=>'add_product',
+//     'uses'=>'ProductController@postAddProduct'
+// ]);
 
-Route::get('/admin/edit_product', [
-    'as'=>'edit_product',
-    'uses'=>'ProductController@getEditProduct'
-]);
+// Route::get('/admin/edit_product', [
+//     'as'=>'edit_product',
+//     'uses'=>'ProductController@getEditProduct'
+// ]);
 
-Route::post('/admin/edit_product', [
-    'as'=>'edit_product',
-    'uses'=>'ProductController@postEditProduct'
-]);
+// Route::post('/admin/edit_product', [
+//     'as'=>'edit_product',
+//     'uses'=>'ProductController@postEditProduct'
+// ]);
 
-Route::get('/admin/sign_up', [
-    'as'=>'sign_up',
-    'uses'=>'AdminController@getSignUp'
-]);
+// Route::get('/admin/sign_up', [
+//     'as'=>'sign_up',
+//     'uses'=>'AdminController@getSignUp'
+// ]);
 
-Route::post('/admin/sign_up', [
-    'as'=>'sign_up',
-    'uses'=>'AdminController@postSignup'
-]);
+// Route::post('/admin/sign_up', [
+//     'as'=>'sign_up',
+//     'uses'=>'AdminController@postSignup'
+// ]);
 
-Route::get('/admin/list_admin', [
-    'as'=>'list_admin',
-    'uses'=>'AdminController@getListAdmin'
-]);
+// Route::get('/admin/list_admin', [
+//     'as'=>'list_admin',
+//     'uses'=>'AdminController@getListAdmin'
+// ]);
 
-Route::get('/admin/edit', [
-        'as'=>'edit_admin',
-        'uses'=>'AdminController@getEditAdmin'
-]);
+// Route::get('/admin/edit', [
+//         'as'=>'edit_admin',
+//         'uses'=>'AdminController@getEditAdmin'
+// ]);
 
-Route::get('/admin/remove', [
-    'as'=>'remove_admin',
-    'uses'=>'AdminController@getRemoveAdmin'
-]);
+// Route::get('/admin/remove', [
+//     'as'=>'remove_admin',
+//     'uses'=>'AdminController@getRemoveAdmin'
+// ]);
 
-Route::get('/admin/order',[
-    'as'=>'list_order',
-    'uses'=>'AdminController@getOrderList'
-]);
+// Route::get('/admin/order',[
+//     'as'=>'list_order',
+//     'uses'=>'AdminController@getOrderList'
+// ]);
 
 
-Route::post('/admin/order',[
-    'as'=>'list_order',
-    'uses'=>'AdminController@postOrder'
-]);
+// Route::post('/admin/order',[
+//     'as'=>'list_order',
+//     'uses'=>'AdminController@postOrder'
+// ]);
 
 // end bên admin
 
-Route::get('/home/product', [
-    'as'=>'product',
-    'uses'=>'SearchController@getAllProduct'
-]);
+// Route::get('/home/product', [
+//     'as'=>'product',
+//     'uses'=>'SearchController@getAllProduct'
+// ]);
 
-Route::get('/home/single', [
-    'as'=>'single',
-    'uses'=>'SearchController@getProduct'
-]);
+// Route::get('/home/single', [
+//     'as'=>'single',
+//     'uses'=>'SearchController@getProduct'
+// ]);
 
-Route::post('/home/search', [
-    'as'=>'search',
-    'uses'=>'SearchController@postSearch'
-]);
+// Route::post('/home/search', [
+//     'as'=>'search',
+//     'uses'=>'SearchController@postSearch'
+// ]);
 
-Route::get('/home/type',[
-    'as'=>'type',
-    'uses'=>'SearchController@getProductsType'
-]);
+// Route::get('/home/type',[
+//     'as'=>'type',
+//     'uses'=>'SearchController@getProductsType'
+// ]);
 
-Route::get('/home/cost',[
-    'as'=>'cost',
-    'uses'=>'SearchController@getProductsCost'
-]);
+// Route::get('/home/cost',[
+//     'as'=>'cost',
+//     'uses'=>'SearchController@getProductsCost'
+// ]);
 
 Route::post('/cart/add',[
     'as'=>'add_cart',

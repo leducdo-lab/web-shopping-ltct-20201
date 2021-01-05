@@ -16,7 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
-        
+
     }
 
     /**
@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
                 ->join('product_type', 'product_type.id', '=', 'product.product_type_id')
                 ->groupBy('product_type.id','product_type.name')
                 ->get();
+                
         View::share('types', $types);
     }
 }

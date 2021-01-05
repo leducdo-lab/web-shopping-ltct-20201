@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 
 use App\Admin;
@@ -15,6 +16,19 @@ use App\Orders;
 
 class AdminController extends Controller
 {
+
+    public function createPerson($email, $password, $is_admin) {
+        $person = new Person();
+        $person->email = $email;
+        $person->password = Hash::make($password);
+        $person->is_admin = $is_admin;
+        $person->save();
+    }
+
+    public function getPersonId($email) {
+        $id = Person::select('id')->where('email', $email)->get();
+        return $id[0]->id;
+    }
 
     public function getIndex() {
 
@@ -53,17 +67,14 @@ class AdminController extends Controller
     }
 
     public function getListProduct() {
-        $products = Products::paginate(10);
-        $products->setPath('list_product/url');
+        $products = Products::paginate(20);
         return view('admin.list_product', ['products' => $products]);
     }
 
     public function getUser() {
         $users = DB::table('users')
                     ->join('persons', 'users.person_id','=', 'persons.id')
-                    ->paginate(10);
-
-        $users->setPath('list_user/url');
+                    ->paginate(15);
 
         return view('admin.list_user', ['users' => $users]);
     }
@@ -71,9 +82,7 @@ class AdminController extends Controller
     public function getListAdmin()
     {
         $admins = DB::table('persons')->join('admins', 'admins.person_id', '=', 'persons.id')
-                    ->paginate(10);
-
-        $admins->setPath('list_user/admin');
+                    ->paginate(15);
 
         $data['main'] = 'Quản lý chính';
         $data['non_main'] = 'Quản lý phụ';
@@ -108,10 +117,8 @@ class AdminController extends Controller
             're_password.same'=> 'Mật khẩu không trùng nhau'
         ]);
 
-        $person = new PersonController();
-
-        $person->createPerson($req->email, $req->password, true);
-        $person_id = $person->getPersonId($req->email);
+        $this->createPerson($req->email, $req->password, true);
+        $person_id = $this->getPersonId($req->email);
 
         if((bool)$req->is_admin)
             $this->createAdmin(true, $person_id);

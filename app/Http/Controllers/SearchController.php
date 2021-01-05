@@ -30,15 +30,12 @@ class SearchController extends Controller
         ]);
     }
 
-    public function getTrending(){
-
-    }
     public function getAllProduct(){
         $product = Products::select('name', 'unit_price', 'url', 'product.id')
                                 ->leftJoin('image', 'image.product_id','=','product.id')
                                 ->where('main', '=', '1')
                                 ->get();
-                                
+
         return view('product.product',
         [
             'products' => $product

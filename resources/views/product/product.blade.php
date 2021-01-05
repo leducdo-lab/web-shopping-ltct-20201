@@ -17,7 +17,7 @@
                     <div class="col-md-4 item-grid1 simpleCart_shelfItem">
                         <div class=" mid-pop">
                             <div class="pro-img">
-                                <img src="images/{{$product->url}}" class="img-responsive" alt="">
+                                <img src="images/{{$product->url}}" class="img-responsive" alt="" width="220" height="230">
                                 <div class="zoom-icon ">
                                     <a class="picture" href="{{route('single','product_id='.$product->id)}}" rel="title" class="b-link-stripe b-animate-go  thickbox"><i class="glyphicon glyphicon-search icon "></i></a>
                                     <a href="{{route('single', 'product_id='.$product->id)}}"><i class="glyphicon glyphicon-menu-right icon"></i></a>
@@ -47,8 +47,8 @@
                     </div>
                     @endforeach
                     @endif
-                    
-                    
+
+
                     <div class="clearfix"></div>
                 </div>
             </div>
